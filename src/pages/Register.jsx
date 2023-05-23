@@ -2,7 +2,7 @@ import React from "react";
 
 const Register = () => {
     return (
-        <div className="form-container">
+        <div className="form-container glass">
         <div className="form-wrapper">
             <span className="logo">Star Rail Messenger</span>
             <span className="title">Register</span>
