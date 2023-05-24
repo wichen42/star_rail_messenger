@@ -56,6 +56,23 @@ input{
     border-radius: 0;
 }
 
+@mixin mobile {
+    @media screen and (max-width:480px) {
+        @content
+    }
+}
+
+@mixin tablet {
+    @media screen and (max-width:768px) {
+        @content
+    }
+}
+
+@mixin laptop {
+    @media screen and (max-width: 1200px) {
+        @content
+    }
+}
 
 .app-container {
     height: 100vh;
@@ -183,6 +200,9 @@ input{
                 .header-left {
                     display: flex;
                     align-items: center;
+                    @include tablet {
+                        display: none;
+                    }
 
                     #sms-icon {
                         color: white;
@@ -354,7 +374,31 @@ input{
                             background-color: white;
                             padding: 10px 20px;
                             border-radius: 0px 10px 10px 10px;
+                            max-width: max-content;
                         }
+                    }
+
+                    &.owner {
+                        display: flex;
+                        flex-direction: row-reverse;
+
+                        .message-content {
+                            align-items: flex-end;
+
+                            p {
+                                background-color: #D5BA8C;
+                                border-radius: 10px 0 10px 10px;
+                            }
+
+                            
+
+                            span {
+                                align-self: flex-end;
+                                color: #444547;
+                                font-size: 14px;
+                            }                            
+                        }
+
                     }
                 }
             }
