@@ -173,7 +173,7 @@ input{
             flex: 25%;
             background-color: rgba(255,255,255,0.1);
 
-            .navbar-header{
+            .navbar {
                 display: flex;
                 align-items: center;
                 margin-bottom: 15px;
@@ -243,16 +243,26 @@ input{
                         color: white;
                         outline: none;
                         &::placeholder {
-                            color: white;
+                            color: #DEDFDC;
                         }
                     }
                 }
 
                 .user-chat {
+                    display: flex;
+                    padding: 10px;
+                    align-items: center;
+                    gap: 10px;
+                    color: white;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: rgba(255,255,255,0.1);
+                    }
 
                     img {
-                        width: 50px;
-                        height: 50px;
+                        width: 40px;
+                        height: 40px;
                         border-radius: 50%;
                         object-fit: cover;
                     }
@@ -260,7 +270,7 @@ input{
             }
         }
 
-        .chats-container {
+        .messages {
             height: 100%;
             width: 100%;
             flex: 75%;

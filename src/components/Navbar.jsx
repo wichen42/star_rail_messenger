@@ -3,7 +3,7 @@ import pompom from '../assets/pompom.jpg';
 
 const Navbar = () => {
   return (
-    <div className='navbar-header'>
+    <div className='navbar'>
             <div className='header-left'>
               <span class="material-symbols-outlined" id="sms-icon">sms</span>
               <span id='header-title'>Messages</span>

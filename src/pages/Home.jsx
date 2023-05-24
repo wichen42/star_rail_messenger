@@ -1,6 +1,6 @@
 import React from 'react'
 import Sidebar from "../components/Sidebar";
-import Chats from "../components/Chats";
+import Messages from "../components/Messages";
 
 const Home = () => {
   return (
@@ -8,7 +8,7 @@ const Home = () => {
         
         <div className='chat-overlay'>
             <Sidebar />
-            <Chats />
+            <Messages />
         </div>
     </div>
   )
