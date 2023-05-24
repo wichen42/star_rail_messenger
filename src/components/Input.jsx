@@ -5,6 +5,7 @@ const Input = () => {
     <div className='input'>
       <input type="text" placeholder='Type something...' />
       <div className="send">
+        <span class="material-symbols-outlined">sentiment_satisfied</span>
         <span class="material-symbols-outlined">attach_file</span>
         <input type="file" id="file" style={{display:"none"}}/>
         <label htmlFor="file">

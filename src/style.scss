@@ -74,6 +74,9 @@ input{
     }
 }
 
+$dark_gray: #444547;
+$off_white: #afafaf;
+
 .app-container {
     height: 100vh;
     width: 100vw;
@@ -116,7 +119,7 @@ input{
             }
 
             .title {
-                color: #444547;
+                color: $dark_gray;
                 align-self: center;
                 font-size: 16px;
             }
@@ -133,7 +136,7 @@ input{
                 border: none;
                 border-radius: 10px;
                 &::placeholder {
-                      color: rgb(175, 175, 175);
+                      color: $off_white;
                 }
             }
 
@@ -151,7 +154,7 @@ input{
                 align-items: center;
                 gap: 10px;
                 font-size: 12px;
-                color: #444547;
+                color: $dark_gray;
                 cursor: pointer;
 
                 img {
@@ -163,7 +166,7 @@ input{
                 font-size: 12px;
                 margin: 10px;
                 align-self: center;
-                color: #444547;
+                color: $dark_gray;
             }
         }
 
@@ -191,7 +194,7 @@ input{
 
         .sidebar-container {
             height: 100%;
-            width: 100%;
+            position: relative;
             margin-right: 25px;
             flex: 25%;
             background-color: rgba(255,255,255,0.1);
@@ -249,12 +252,17 @@ input{
                         color: #DEDFDC;
                         cursor: pointer;
                         border-radius: 4px;
+
+                        @include tablet {
+                            position: absolute;
+                            bottom: 10px;
+                        }
                     }
                 }
             }
 
             .search {
-                border-bottom: 1px solid rgb(175, 175, 175);
+                border-bottom: 1px solid $off_white;
 
                 .search-form {
                     padding: 10px;
@@ -302,7 +310,7 @@ input{
                     }
                     p {
                         font-size: 14px;
-                        color: rgb(175, 175, 175);
+                        color: $off_white;
                     }
                     
                 }
@@ -322,14 +330,14 @@ input{
                 align-items: center;
                 justify-content: space-between;
                 padding: 10px;
-                border-bottom: solid 1px rgb(175, 175, 175);
+                border-bottom: solid 1px $off_white;
 
                 .chat-icons {
                     display: flex;
                     gap: 10px;
 
                     span {
-                        color: #444547;
+                        color: $dark_gray;
                         font-weight: bold;
                         cursor: pointer;
                     }
@@ -355,7 +363,7 @@ input{
                             margin-top: 5px;
                             margin-left: 10px;
                             font-size: 10px;
-                            color: #444547;
+                            color: $dark_gray;
                         }
 
                         img {
@@ -400,7 +408,7 @@ input{
 
                             span {
                                 align-self: flex-end;
-                                color: #444547;
+                                color: $dark_gray;
                                 font-size: 14px;
                             }                            
                         }
@@ -424,7 +432,7 @@ input{
                     font-size: 18px;
 
                     &::placeholder {
-                        color: rgb(175,175,175);
+                        color: #afafaf;
                     }
                 }
 
