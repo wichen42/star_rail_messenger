@@ -289,6 +289,71 @@ input{
             flex: 75%;
             background: linear-gradient(to bottom, #D6D7DB, #DEDFDC);
             border-radius: 0px 15px 0px 0px;
+
+            .chat-info {
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px;
+                border-bottom: solid 1px rgb(175, 175, 175);
+
+                .chat-icons {
+                    display: flex;
+                    gap: 10px;
+
+                    span {
+                        color: #444547;
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .messages {
+                height: calc(100% - 100px);
+                padding: 10px;
+
+            }
+
+            .input {
+                height: 50px;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: white;
+
+                input {
+                    width: 100%;
+                    border: none;
+                    outline: none;
+                    font-size: 18px;
+
+                    &::placeholder {
+                        color: rgb(175,175,175);
+                    }
+                }
+
+                .send {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    span {
+                        cursor: pointer;
+                        font-size: 24px;
+                    }
+
+                    button {
+                        border: none;
+                        padding: 10px 15px;
+                        background-color: #377CC2;
+                        border-radius: 10px;
+                        color: white;
+                    }
+                }
+            }
         }
     }
 }
