@@ -1,5 +1,5 @@
 import React from 'react'
-import pompom from '../assets/pompom.jpg';
+import trailblazer from '../assets/trailblazer.png';
 
 const Navbar = () => {
   return (
@@ -10,7 +10,7 @@ const Navbar = () => {
             </div>
 
             <div className='header-right'>
-                <img src={pompom} alt="" />
+                <img src={trailblazer} alt="" />
                 <span>User</span>
                 <button>Logout</button>
             </div>

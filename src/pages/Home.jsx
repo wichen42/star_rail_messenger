@@ -1,14 +1,14 @@
 import React from 'react'
 import Sidebar from "../components/Sidebar";
-import Messages from "../components/Messages";
+import Chat from "../components/Chat";
 
 const Home = () => {
   return (
-    <div className='home-container'>
+    <div className='home'>
         
-        <div className='chat-overlay'>
+        <div className='container'>
             <Sidebar />
-            <Messages />
+            <Chat />
         </div>
     </div>
   )

@@ -153,13 +153,13 @@ input{
     }
 }
 
-.home-container {
+.home {
     height: 100%;
     width: 100%;
     margin-left: 30px;
     margin-right: 30px;
 
-    .chat-overlay {
+    .container {
         height: 85%;
         margin-top: 40px;
         display: flex;
@@ -262,8 +262,8 @@ input{
                 }
 
                 img {
-                    width: 40px;
-                    height: 40px;
+                    width: 50px;
+                    height: 50px;
                     border-radius: 50%;
                     object-fit: cover;
                 }
@@ -283,7 +283,7 @@ input{
             }
         }
 
-        .messages {
+        .chat {
             height: 100%;
             width: 100%;
             flex: 75%;

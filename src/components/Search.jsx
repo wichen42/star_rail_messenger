@@ -1,4 +1,5 @@
 import React from 'react'
+import trailblazer from '../assets/trailblazer.png';
 
 const Search = () => {
   return (
@@ -7,7 +8,7 @@ const Search = () => {
         <input type="text" placeholder='Find a User'/>
       </div>
       <div className='user-chat'>
-        <img src="https://images.pexels.com/photos/16881619/pexels-photo-16881619/free-photo-of-nunca-tan-lejos-de-la-realidad.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" />
+        <img src={trailblazer} alt="" />
         <div className='user-chat-info'>
           <span>User</span>
         </div>
