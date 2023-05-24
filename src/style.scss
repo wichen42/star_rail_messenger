@@ -226,6 +226,38 @@ input{
                     }
                 }
             }
+
+            .search {
+                border-bottom: 1px solid rgb(175, 175, 175);
+
+                .search-form {
+                    padding: 10px;
+                    width: 100%;
+
+                    input {
+                        height: 25px;
+                        width: 100%;
+                        border-radius: 4px;
+                        background-color: rgba(255,255,255,0.1);
+                        border: none;
+                        color: white;
+                        outline: none;
+                        &::placeholder {
+                            color: white;
+                        }
+                    }
+                }
+
+                .user-chat {
+
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+                }
+            }
         }
 
         .chats-container {
