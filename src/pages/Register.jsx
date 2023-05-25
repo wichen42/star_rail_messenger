@@ -9,6 +9,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
     const [err, setErr] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -50,7 +51,7 @@ const Register = () => {
                             console.log(`Error setting up default user chat: ${error}`);
                         }
 
-                    
+                        navigate("/");
 
                     } catch(error) {
                         setErr(true)
