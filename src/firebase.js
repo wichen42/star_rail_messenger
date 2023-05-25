@@ -1,9 +1,10 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-require('dotenv').config();
+import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API,
+  apiKey: process.env.REACT_APP_FIREBASE_API,
   authDomain: "star-rail-messenger.firebaseapp.com",
   projectId: "star-rail-messenger",
   storageBucket: "star-rail-messenger.appspot.com",
@@ -15,3 +16,5 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
+export const storage = getStorage();
+export const db = getFirestore();
