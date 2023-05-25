@@ -2,7 +2,8 @@ import React from 'react'
 
 const Login = () => {
   return (
-    <div className="form-container">
+    <div className="app-container glass">
+      <div className="form-container">
         <div className="form-wrapper">
             <div className="form-header">
                 <span className="logo">Star Rail Messenger</span>
@@ -15,7 +16,9 @@ const Login = () => {
                 <p>Don't have an account? Register</p>
             </form>
         </div>
+      </div>
     </div>
+    
   )
 }
 

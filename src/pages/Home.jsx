@@ -1,17 +1,18 @@
 import React from 'react'
-import Sidebar from "../components/Sidebar";
-import Chat from "../components/Chat";
 import Register from "./Register";
+import Chat from "../components/Chat";
+import Sidebar from "../components/Sidebar";
+
 
 const Home = () => {
   return (
-    <div className='home'>
-        
+    <div className="app-container glass">
+      <div className='home'>
         <div className='container'>
-            {/* <Sidebar />
-            <Chat /> */}
-            <Register />
+            <Sidebar />
+            <Chat />
         </div>
+      </div>
     </div>
   )
 }

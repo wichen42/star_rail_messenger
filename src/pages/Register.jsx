@@ -33,17 +33,28 @@ const Register = () => {
                             console.log(`Error withupdateProfile: ${error}`)
                         }
 
+                        try {
+                            await setDoc(doc(db, "users", res.user.uid), {
+                                uid: res.user.uid,
+                                displayName,
+                                email,
+                                photoURL: downloadURL,
+                            });
+                        } catch(error) {
+                            console.log(`Error with setDoc: ${error}`);
+                        }
 
-                        await setDoc(doc(db, "users", res.user.uid), {
-                            uid: res.user.uid,
-                            displayName,
-                            email,
-                            photoURL: downloadURL,
-                        });
+                        try {
+                            await setDoc(doc(db, "userChats", res.user.uid), {});
+                        } catch(error) {
+                            console.log(`Error setting up default user chat: ${error}`);
+                        }
+
+                    
 
                     } catch(error) {
                         setErr(true)
-                        console.log(`Error with updating setDoc: ${error}`)
+                        console.log(`Error with updating upload: ${error}`)
                     }
                 })
             })
@@ -56,27 +67,29 @@ const Register = () => {
     };
 
     return (
-        <div className="form-container">
-        <div className="form-wrapper">
-            <div className="form-header">
-                <span className="logo">Star Rail Messenger</span>
-                <span className="title">Register</span>
-            </div>
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Display Name"/>
-                <input type="email" placeholder="Email"/>
-                <input type="password" placeholder="Password"/>
-                <input type="file" id="file" style={{display:"none"}} placeholder="Avatar"/>
-                <label htmlFor="file">
-                    <img src={addAvatar} alt="" />
-                    <span>Add an Avatar</span>
-                </label>
-                <button>Sign Up</button>
-                {err && <span>Something went wrong...</span>}
-                <p>Already have an account? Login</p>
-            </form>
-        </div>
+        <div className="app-container glass">
+            <div className="form-container">
+                <div className="form-wrapper">
+                    <div className="form-header">
+                        <span className="logo">Star Rail Messenger</span>
+                        <span className="title">Register</span>
+                    </div>
+                    <form onSubmit={handleSubmit}>
+                        <input type="text" placeholder="Display Name"/>
+                        <input type="email" placeholder="Email"/>
+                        <input type="password" placeholder="Password"/>
+                        <input type="file" id="file" style={{display:"none"}} placeholder="Avatar"/>
+                        <label htmlFor="file">
+                            <img src={addAvatar} alt="" />
+                            <span>Add an Avatar</span>
+                        </label>
+                        <button>Sign Up</button>
+                        {err && <span>Something went wrong...</span>}
+                        <p>Already have an account? Login</p>
+                    </form>
+                </div>
     </div>
+        </div>
     )
 };
 
