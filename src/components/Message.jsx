@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PomPom from "../assets/pompom.jpg";
+import { AuthContext } from '../context/AuthContext';
+import { ChatContext } from '../context/ChatContext';
 
-const Message = () => {
+const Message = ({message}) => {
+  const {currentUser} = useContext(AuthContext);
+  const {data} = useContext(ChatContext);
+
   return (
     <div className="message owner">
         <div className="message-info">
