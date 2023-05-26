@@ -65,9 +65,13 @@ const Input = () => {
     setImage(null);
   };
 
+  const handleKey = (e) => {
+    e.code === "Enter" && handleSend();
+  };
+
   return (
     <div className='input'>
-      <input type="text" placeholder='Type something...' onChange={(e) => setText(e.target.value)} value={text}/>
+      <input type="text" placeholder='Type something...' onChange={(e) => setText(e.target.value)} value={text} onClick={handleKey}/>
       <div className="send">
         <span class="material-symbols-outlined">sentiment_satisfied</span>
         <span class="material-symbols-outlined">attach_file</span>
@@ -75,7 +79,7 @@ const Input = () => {
         <label htmlFor="file">
           <span class="material-symbols-outlined">image</span>
         </label>
-          <button onClick={handleSend}>Send</button>
+          <button onClick={handleSend} onKeyDown={handleKey}>Send</button>
       </div>
     </div>
   )
