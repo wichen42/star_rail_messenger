@@ -5,7 +5,7 @@ import Sidebar from "../components/Sidebar";
 
 const Home = () => {
   return (
-    <div className="app-container glass">
+    <div className="app-container">
       <div className='home'>
         <div className='container'>
             <Sidebar />
