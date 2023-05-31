@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+$scrollbar: #535255;
+$dark_gray: #444547;
+$off_white: #afafaf;
+
 // SCSS RESET
 *, *:before, *:after{
     box-sizing: border-box;
@@ -64,6 +68,28 @@ input{
     border-radius: 0;
 }
 
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #535255 #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: linear-gradient(to bottom, #D6D7DB, #DEDFDC);
+    
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #535255;
+    border-radius: 10px;
+  }
+
 @mixin mobile {
     @media screen and (max-width:480px) {
         @content
@@ -82,8 +108,6 @@ input{
     }
 }
 
-$dark_gray: #444547;
-$off_white: #afafaf;
 
 .app-container {
     height: 100vh;
@@ -280,7 +304,7 @@ $off_white: #afafaf;
                     height: calc(100% - 100px);
                     padding: 10px;
                     overflow: scroll;
-    
+                    overflow-x: hidden;
                     .message {
                         display: flex;                    
                         gap: 20px;
