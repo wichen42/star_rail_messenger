@@ -1,13 +1,16 @@
 import React, { useContext, useState } from 'react'
-import { collection, query, where, getDocs, setDoc, doc, updateDoc, serverTimestamp, getDoc } from 'firebase/firestore';
+import { collection, query, where, getDocs, setDoc, doc, updateDoc, serverTimestamp, getDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
 import { AuthContext } from '../context/AuthContext';
+import { ChatContext } from '../context/ChatContext';
 
 const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
   const {currentUser} = useContext(AuthContext);
+  const {dispatch} = useContext(ChatContext);
+
 
   const handleSearch = async () => {
     const q = query(collection(db, "users"), where("displayName", "==", username));
@@ -28,7 +31,7 @@ const Search = () => {
     e.code === "Enter" && handleSearch(username);
   };
 
-  const handleSelect = async () => {
+  const handleSelect = async (u) => {
     const combinedId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
@@ -59,6 +62,8 @@ const Search = () => {
       console.log(`There was an error fetching chats: ${error}`)
     }
 
+    dispatch({type:"CHANGE_USER", payload: user});
+
     setUser(null);
     setUsername("")
   };
@@ -74,7 +79,7 @@ const Search = () => {
       </div>
       {err && <span>User not found!</span>}
       {user && 
-        <div className='user-chat' onClick={handleSelect}>
+        <div className='user-chat' onClick={()=>handleSelect(user)}>
           <img src={user.photoURL} alt="" />
           <div className='user-chat-info'>
             <span>{user.displayName}</span>
