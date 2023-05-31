@@ -5,12 +5,25 @@ import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from 'firebase
 import { db, storage } from '../firebase';
 import { v4 as uuid } from 'uuid';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import emote_1 from "../assets/emotes/emote_1.png";
+import emote_2 from "../assets/emotes/emote_2.png";
+import emote_3 from "../assets/emotes/emote_3.png";
+import emote_4 from "../assets/emotes/emote_4.png";
+import emote_5 from "../assets/emotes/emote_5.png";
+import emote_6 from "../assets/emotes/emote_6.png";
+import emote_7 from "../assets/emotes/emote_7.png";
+import emote_8 from "../assets/emotes/emote_8.png";
+import emote_9 from "../assets/emotes/emote_9.png";
+import emote_10 from "../assets/emotes/emote_10.png";
+
 
 const Input = () => {
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
   const {currentUser} = useContext(AuthContext);
   const {data} = useContext(ChatContext);
+
+  const emotes = [emote_1, emote_2, emote_3, emote_4, emote_5, emote_6, emote_7, emote_8, emote_9, emote_10];
 
   const handleSend = async () => {
     if (image) {
@@ -71,6 +84,14 @@ const Input = () => {
 
   return (
     <div className='input'>
+      <dialog open>
+        <form method='dialog'>
+          {emotes.map((emote) => {
+            return <img src={emote} alt="" />
+          })}
+          <button>X</button>
+        </form>
+      </dialog>
       <input type="text" placeholder='Type something...' onChange={(e) => setText(e.target.value)} value={text} onKeyDown={handleKey}/>
       <div className="send">
         <span class="material-symbols-outlined">sentiment_satisfied</span>
