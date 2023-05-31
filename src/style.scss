@@ -117,7 +117,6 @@ $off_white: #afafaf;
                 position: relative;
                 margin-right: 25px;
                 flex: 25%;
-                background-color: rgba(255,255,255,0.1);
     
                 .navbar {
                     display: flex;
@@ -182,35 +181,39 @@ $off_white: #afafaf;
                 }
     
                 .search {
-                    border-bottom: 1px solid $off_white;
     
                     .search-form {
-                        padding: 10px;
                         width: 100%;
+                        margin-bottom: 20px;
     
                         input {
-                            height: 25px;
+                            height: 30px;
                             width: 100%;
+                            font-size: 14px;
                             border-radius: 4px;
                             background-color: rgba(255,255,255,0.1);
                             border: none;
                             color: white;
                             outline: none;
+                            padding: 5px;
                             &::placeholder {
                                 color: #DEDFDC;
                             }
                         }
                     }
                 }
-    
+                
                 .user-chat {
+                    border: 1px solid $off_white;
+                    margin-bottom: 15px;
                     display: flex;
                     padding: 10px;
                     align-items: center;
                     gap: 10px;
-                    color: white;
+                    border-radius: 4px;
                     cursor: pointer;
-    
+                    background-color: rgba(0,0,0,0.3);
+                    
                     &:hover {
                         background-color: rgba(255,255,255,0.1);
                     }
@@ -223,17 +226,27 @@ $off_white: #afafaf;
                     }
     
                     .user-chat-info {
+                        display: flex;
+                        width: 100%;
+                        align-items: center;
+                        justify-content: space-between;
                         
                         span {
                             font-size: 18px;
                             font-weight: bold;
+                            color: $off_white;
                         }
+
                         p {
                             font-size: 14px;
                             color: $off_white;
                         }
                         
                     }
+                }
+
+                .searched-user {
+                    margin-bottom: 15px;
                 }
             }
     

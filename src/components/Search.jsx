@@ -65,7 +65,7 @@ const Search = () => {
     dispatch({type:"CHANGE_USER", payload: user});
 
     setUser(null);
-    setUsername("")
+    setUsername("");
   };
 
   return (
@@ -79,7 +79,7 @@ const Search = () => {
       </div>
       {err && <span>User not found!</span>}
       {user && 
-        <div className='user-chat' onClick={()=>handleSelect(user)}>
+        <div className='user-chat searched-user' onClick={()=>handleSelect(user)}>
           <img src={user.photoURL} alt="" />
           <div className='user-chat-info'>
             <span>{user.displayName}</span>
