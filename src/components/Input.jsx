@@ -84,7 +84,7 @@ const Input = () => {
 
   return (
     <div className='input'>
-      <dialog open>
+      <dialog >
         <form method='dialog'>
           {emotes.map((emote) => {
             return <img src={emote} alt="" />
