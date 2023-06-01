@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import addAvatar from "../assets/addAvatar.png";
 import { auth, storage, db } from "../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -6,10 +6,14 @@ import { useState } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const Register = () => {
     const [err, setErr] = useState(false);
     const navigate = useNavigate();
+    const { currentUser } = useContext(AuthContext);
+
+    if (currentUser) navigate("/");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,10 +21,11 @@ const Register = () => {
         const email = e.target[1].value;
         const password = e.target[2].value;
         const file = e.target[3].files[0];
-    
+        
         try{
             const res = await createUserWithEmailAndPassword(auth, email, password);
             const storageRef = ref(storage, displayName);
+            console.log(file);
 
             await uploadBytesResumable(storageRef, file).then(() => {
                 getDownloadURL(storageRef).then(async (downloadURL) => {

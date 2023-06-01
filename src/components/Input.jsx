@@ -82,6 +82,17 @@ const Input = () => {
     e.code === "Enter" && handleSend();
   };
 
+  const handleClick = (e) => {
+    const src = e.target.getAttribute('src');
+    const match = src.match(/emote_\d+/);
+
+    if (match) {
+      console.log(match[0]);
+    } else {
+      console.log("No match found");
+    }
+  };
+
   return (
     <div className='input'>
       <dialog className='emote-modal' open>
@@ -89,7 +100,7 @@ const Input = () => {
           <button>X</button>
           <div>
             {emotes.map((emote) => {
-              return <img src={emote} alt="" />
+              return <img src={emote} alt="" onClick={handleClick} />
             })}
           </div>
         </form>
@@ -97,7 +108,6 @@ const Input = () => {
       <input type="text" placeholder='Type something...' onChange={(e) => setText(e.target.value)} value={text} onKeyDown={handleKey}/>
       <div className="send">
         <span class="material-symbols-outlined">sentiment_satisfied</span>
-        <span class="material-symbols-outlined">attach_file</span>
         <input type="file" id="file" style={{display:"none"}} onChange={(e) => setImage(e.target.files[0])}/>
         <label htmlFor="file">
           <span class="material-symbols-outlined">image</span>
