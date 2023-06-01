@@ -381,7 +381,44 @@ input{
                     align-items: center;
                     justify-content: space-between;
                     background: white;
+                    position: relative;
+                    
+                    .emote-modal {
+                        bottom: 40px;
+                        right: 10px;
+                        border: 1px solid $dark_gray;
+                        border-radius: 10px 10px 0 10px;
+                        background-color: linear-gradient(to bottom, #D6D7DB, #DEDFDC);
+
+                        form {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-end;
+                            gap: 5px;
+
+                            button {
+                                width: fit-content;
+                                border: none;
+                                background-color: transparent;
+                                cursor: pointer;
+                            }
+
+                            div {
+                                img {
+                                    height: 100px;
+                                    border-radius: 10px;
     
+                                    &:hover {
+                                        background-color: rgba(0,0,0,0.3);
+                                    }
+                                }
+    
+                            }
+                        }
+                            
+                            
+                    }
+                    
                     input {
                         width: 100%;
                         border: none;

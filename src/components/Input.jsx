@@ -84,12 +84,14 @@ const Input = () => {
 
   return (
     <div className='input'>
-      <dialog >
+      <dialog className='emote-modal' open>
         <form method='dialog'>
-          {emotes.map((emote) => {
-            return <img src={emote} alt="" />
-          })}
           <button>X</button>
+          <div>
+            {emotes.map((emote) => {
+              return <img src={emote} alt="" />
+            })}
+          </div>
         </form>
       </dialog>
       <input type="text" placeholder='Type something...' onChange={(e) => setText(e.target.value)} value={text} onKeyDown={handleKey}/>
