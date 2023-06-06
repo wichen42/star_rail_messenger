@@ -5,8 +5,6 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
-import { signOut } from "firebase/auth";
-import { auth } from "./firebase";
 
 function App() {
 
@@ -19,7 +17,6 @@ function App() {
 
     return children;
   };
-
 
   return (
     <BrowserRouter>

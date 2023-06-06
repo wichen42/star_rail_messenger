@@ -25,7 +25,6 @@ const Register = () => {
         try{
             const res = await createUserWithEmailAndPassword(auth, email, password);
             const storageRef = ref(storage, displayName);
-            console.log(file);
 
             await uploadBytesResumable(storageRef, file).then(() => {
                 getDownloadURL(storageRef).then(async (downloadURL) => {
@@ -64,7 +63,6 @@ const Register = () => {
                     }
                 })
             })
-
 
         } catch(error) {
             setErr(true);

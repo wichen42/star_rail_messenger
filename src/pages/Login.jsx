@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { auth } from '../firebase';
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { Navigate, Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
