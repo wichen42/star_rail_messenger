@@ -11,8 +11,6 @@ const Chat = () => {
   const {currentUser} = useContext(AuthContext);
   const {dispatch} = useContext(ChatContext);
   const [chats, setChats] = useState([]);
-  // TODO: NEED TO LOAD FIRST CHAT INSTEAD OF BLANK TO AVOID DB ISSUES 
-  //       OR DISABLE INPUT UNTIL ANOTHER USER IS SELECTED
 
   useEffect(() => {
     const getChats = () => {
@@ -26,11 +24,20 @@ const Chat = () => {
     };
 
     currentUser.uid && getChats();
-    // dispatch({type: "CHANGE_USER", payload: chat[1].userInfo})
-    
+
   }, [currentUser.uid]);
 
-  console.log(chats)
+
+  // TODO: figure out how to close off below useEffect correctly
+  useEffect(() => {
+      // Get most recent chat and load into Chat
+      Object.entries(chats)?.sort((a,b) => b[1].date - a[1].date).map((chat) => {
+        // console.log(chat[1].userInfo);
+        dispatch({type: "CHANGE_USER", payload: chat[1].userInfo});
+      });
+
+  }, [chats, dispatch]);
+
 
   return (
     <div className='chat'>
