@@ -8,6 +8,9 @@ import { doc, setDoc } from "firebase/firestore";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
+// TODO: 1. NEED TO ADDRESS NULL OBJECT ERROR WHEN REGISTERING. USERS CONFIRMED TO BE ADDED INTO DATABASE
+//       2. HOVER STYLING OVER REGISTER BUTTON
+
 const Register = () => {
     const [err, setErr] = useState(false);
     const navigate = useNavigate();

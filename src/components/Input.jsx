@@ -26,15 +26,18 @@ const Input = () => {
 
   const emotes = [emote_1, emote_2, emote_3, emote_4, emote_5, emote_6, emote_7, emote_8, emote_9, emote_10];
 
+  //TODO: NEED TO ADDRESS FIREBASE STORAGE OBJECT DOES NOT EXSIST ERROR. DISABLE IMAGE UPLOAD TIME BEING.
   const handleSend = async () => {
     if (image) {
       const storageRef = ref(storage, uuid());
-
       const uploadTask = uploadBytesResumable(storageRef, image);
-
+      
+      console.log(image)
+      console.log(storageRef)
       uploadTask.on(
         (error) => {
           console.log(`Something went wrong with input upload: ${error}`);
+          console.log(image);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
@@ -59,8 +62,9 @@ const Input = () => {
           date: Timestamp.now(),
         }),
       });
-    }
+    };
 
+    // Update last message for current user
     await updateDoc(doc(db, "userChats", currentUser.uid), {
       [data.chatId + ".lastMessage"]: {
         text,
@@ -68,6 +72,7 @@ const Input = () => {
       [data.chatId + ".date"]: serverTimestamp(),
     });
 
+    // Update last message for other user
     await updateDoc(doc(db, "userChats", data.user.uid), {
       [data.chatId + ".lastMessage"]: {
         text,
@@ -114,10 +119,10 @@ const Input = () => {
       <input type="text" placeholder='Type something...' onChange={(e) => setText(e.target.value)} value={text} onKeyDown={handleKey}/>
       <div className="send">
         <span class="material-symbols-outlined" onClick={handleOpen}>sentiment_satisfied</span>
-        <input type="file" id="file" style={{display:"none"}} onChange={(e) => setImage(e.target.files[0])}/>
+        {/* <input type="file" id="file" style={{display:"none"}} onChange={(e) => setImage(e.target.files[0])}/>
         <label htmlFor="file">
           <span class="material-symbols-outlined">image</span>
-        </label>
+        </label> */}
           <button onClick={handleSend} >Send</button>
       </div>
     </div>
