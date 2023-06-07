@@ -384,10 +384,10 @@ input{
                     position: relative;
                     
                     .emote-modal {
-                        bottom: 40px;
-                        right: 10px;
+                        top: 57%;
+                        left: 19.5%;
                         border: 1px solid $dark_gray;
-                        border-radius: 10px 10px 0 10px;
+                        border-radius: 10px;
                         background-color: linear-gradient(to bottom, #D6D7DB, #DEDFDC);
 
                         form {

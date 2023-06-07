@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import { ChatContext } from '../context/ChatContext';
 import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
@@ -20,6 +20,7 @@ import emote_10 from "../assets/emotes/emote_10.png";
 const Input = () => {
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
+  const dialogRef = useRef(null);
   const {currentUser} = useContext(AuthContext);
   const {data} = useContext(ChatContext);
 
@@ -82,7 +83,12 @@ const Input = () => {
     e.code === "Enter" && handleSend();
   };
 
+  const handleOpen = () => {
+    dialogRef.current.showModal();
+  };
+
   const handleClick = (e) => {
+
     const src = e.target.getAttribute('src');
     const match = src.match(/emote_\d+/);
 
@@ -95,7 +101,7 @@ const Input = () => {
 
   return (
     <div className='input'>
-      <dialog className='emote-modal' open>
+     <dialog className='emote-modal' ref={dialogRef}>
         <form method='dialog'>
           <button>X</button>
           <div>
@@ -107,7 +113,7 @@ const Input = () => {
       </dialog>
       <input type="text" placeholder='Type something...' onChange={(e) => setText(e.target.value)} value={text} onKeyDown={handleKey}/>
       <div className="send">
-        <span class="material-symbols-outlined">sentiment_satisfied</span>
+        <span class="material-symbols-outlined" onClick={handleOpen}>sentiment_satisfied</span>
         <input type="file" id="file" style={{display:"none"}} onChange={(e) => setImage(e.target.files[0])}/>
         <label htmlFor="file">
           <span class="material-symbols-outlined">image</span>
