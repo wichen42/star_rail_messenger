@@ -195,6 +195,10 @@ input{
                             color: #DEDFDC;
                             cursor: pointer;
                             border-radius: 4px;
+
+                            &:hover {
+                                background-color: #444547;
+                            }
     
                             @include tablet {
                                 position: absolute;
@@ -509,12 +513,16 @@ input{
             }
 
             button {
-                background-color: #A8BDFF;
+                background-color: #919eca;
                 color: white;
                 padding: 10px;
                 font-weight: bold;
                 border: none;
                 cursor: pointer;
+
+                &:hover {
+                    background-color: #7c8cc0;
+                }
             }
 
             label {
