@@ -54,7 +54,7 @@ const Message = ({message}) => {
         </div>
         <div className="message-content">
             <span>{username}</span>
-            <p>{message.text}</p>
+            {message.text && <p>{message.text}</p>}
             {message.img && <img src={message.img} alt="" />}
         </div>
     </div>
