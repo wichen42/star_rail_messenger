@@ -16,7 +16,6 @@ const Register = () => {
     const navigate = useNavigate();
     const { currentUser } = useContext(AuthContext);
 
-    if (currentUser) navigate("/");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -71,7 +70,12 @@ const Register = () => {
             setErr(true);
             console.log(error);
         };
+
+        navigate("/");
     };
+
+    // TODO: This might be causing an null object error since there is no current user on register / login until after form is submitted
+    if (currentUser) navigate("/");
 
     return (
         <div className="app-container glass">
