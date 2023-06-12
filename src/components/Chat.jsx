@@ -28,15 +28,19 @@ const Chat = () => {
   }, [currentUser.uid]);
 
 
-  // TODO: figure out how to close off below useEffect correctly
-  useEffect(() => {
-      // Get most recent chat and load into Chat
-      Object.entries(chats)?.sort((a,b) => b[1].date - a[1].date).map((chat) => {
-        // console.log(chat[1].userInfo);
-        dispatch({type: "CHANGE_USER", payload: chat[1].userInfo});
-      });
+  // TODO: 1. Figure out how to close off below useEffect correctly.
+  //       2. Need to grab from start of chat list   
+  // useEffect(() => {
+  //     // Get most recent chat and load into Chat
+  //     // console.log(chats);
+  //     const chatDup = JSON.parse(JSON.stringify(chats));
+  //     {chatDup && Object.entries(chatDup)?.sort((a,b) => b[1].date - a[1].date).map((chat) => (
+  //       // console.log(chat[1]);
+  //       // console.table(chat[1]);
+  //       dispatch({type: "CHANGE_USER", payload: chat[1].userInfo})
+  //   ))};
 
-  }, [chats, dispatch]);
+  // }, [chats, dispatch]);
 
 
   return (

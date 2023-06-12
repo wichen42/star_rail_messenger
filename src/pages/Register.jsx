@@ -53,6 +53,16 @@ const Register = () => {
 
                         try {
                             // Create a default userChats object with chat bot
+
+                            // combinedID = {
+                            //     date: "",
+                            //     lastMessage: {text: ""},
+                            //     userInfo: {
+                            //         displayName: "",
+                            //         photoURL: "",
+                            //         uid: "",
+                            //     }
+                            // }
                             const bot = {
                                 displayName: "The Conductor",
                                 email: "conductor@gmail.com",
