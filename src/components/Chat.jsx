@@ -28,8 +28,7 @@ const Chat = () => {
   }, [currentUser.uid]);
 
 
-  // TODO: 1. Figure out how to close off below useEffect correctly.
-  //       2. Need to grab from start of chat list   
+  // TODO: 1. POPULATE CHAT WINDOW WITH LATEST CHAT ON FIRST LOAD 
   // useEffect(() => {
   //     // Get most recent chat and load into Chat
   //     // console.log(chats);

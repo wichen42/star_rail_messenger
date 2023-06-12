@@ -71,15 +71,15 @@ const Register = () => {
                             };
                             const combinedId = res.user.uid > bot.uid ? res.user.uid + bot.uid : bot.uid + res.user.uid;
                             await setDoc(doc(db, "userChats", res.user.uid), {
-                                [combinedId + ".userInfo"] : {
-                                    uid: bot.uid,
-                                    displayName: bot.displayName,
-                                    photoURL: bot.photoURL,
-                                },
-                                [combinedId + ".date"] : serverTimestamp(),
-                                [combinedId + ".lastMessage"] : {
-                                    text: "Welcome to Star Rail Messenger! I'm your personal chatbot, how can I help?",
-                                },
+                                // [combinedId + ".userInfo"] : {
+                                //     uid: bot.uid,
+                                //     displayName: bot.displayName,
+                                //     photoURL: bot.photoURL,
+                                // },
+                                // [combinedId + ".date"] : serverTimestamp(),
+                                // [combinedId + ".lastMessage"] : {
+                                //     text: "Welcome to Star Rail Messenger! I'm your personal chatbot, how can I help?",
+                                // },
                             });
                         } catch(error) {
                             console.log(`Error setting up default user chat: ${error}`);
