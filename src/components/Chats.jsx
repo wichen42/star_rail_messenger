@@ -23,6 +23,7 @@ const Chats = () => {
       };
     };
 
+    // call getChats once currentUser is populated
     currentUser.uid && getChats();
     
   }, [currentUser.uid]);
