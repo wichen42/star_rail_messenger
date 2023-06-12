@@ -10,7 +10,8 @@ const Login = () => {
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  if (currentUser) navigate("/");
+  // TODO: This might be causing an null object error since there is no current user on register / login until after form is submitted
+  // if (currentUser) navigate("/");
 
   const handleLogin = async (email, password) => {
     try{

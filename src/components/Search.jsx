@@ -35,10 +35,12 @@ const Search = () => {
     const combinedId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
-
+      // check to see if chat already exists between users, if not create
       if (!res.exists()) {
+        // create chat in chats collection
         await setDoc(doc(db, "chats", combinedId), { messages: [] });
 
+        // update current user's userChats
         await updateDoc(doc(db, "userChats", currentUser.uid), {
           [combinedId + ".userInfo"]: {
             uid: user.uid,
@@ -48,6 +50,7 @@ const Search = () => {
           [combinedId + ".date"]: serverTimestamp(),
         });
 
+        // update other user's userChats
         await updateDoc(doc(db, "userChats", user.uid), {
           [combinedId + ".userInfo"]: {
             uid: currentUser.uid,

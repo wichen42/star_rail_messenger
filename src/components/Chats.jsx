@@ -4,6 +4,7 @@ import { db } from '../firebase';
 import { useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { ChatContext } from '../context/ChatContext';
+import PomPom from '../assets/pompom.jpg';
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
@@ -11,6 +12,7 @@ const Chats = () => {
   const {dispatch} = useContext(ChatContext);
 
   useEffect(() => {
+    // fetch all of users chats
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
         setChats(doc.data());
@@ -26,6 +28,7 @@ const Chats = () => {
   }, [currentUser.uid]);
   
   const handleSelect = (user) => {
+    // console.log(user);
     dispatch({type: "CHANGE_USER", payload: user})
   };
 
@@ -43,6 +46,16 @@ const Chats = () => {
         </div>
       </div>
       ))}
+      {/* <div className="user-chat">
+        <img src={PomPom} alt="" />
+        <div className="user-chat-info">
+          <div>
+            <span>PomPom Bot</span>
+            <p>Powered by ChatGPT</p>
+          </div>
+          <span class="material-symbols-outlined">arrow_forward_ios</span>
+        </div>
+      </div> */}
     </div>
   )
 }

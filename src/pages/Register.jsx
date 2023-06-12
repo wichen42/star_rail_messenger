@@ -52,6 +52,7 @@ const Register = () => {
                         }
 
                         try {
+                            // TODO: change empty object with user info for chatbot
                             await setDoc(doc(db, "userChats", res.user.uid), {});
                         } catch(error) {
                             console.log(`Error setting up default user chat: ${error}`);
@@ -75,7 +76,7 @@ const Register = () => {
     };
 
     // TODO: This might be causing an null object error since there is no current user on register / login until after form is submitted
-    if (currentUser) navigate("/");
+    // if (currentUser) navigate("/");
 
     return (
         <div className="app-container glass">
