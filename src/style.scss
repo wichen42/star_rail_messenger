@@ -87,7 +87,6 @@ input{
 
   *::-webkit-scrollbar-thumb {
     background-color: #535255;
-    border-radius: 10px;
   }
 
 @mixin mobile {
@@ -343,6 +342,7 @@ input{
                             img {
                                 height: 70%;
                                 width: 70%;
+                                border-radius: 10px;
                             }
     
                             p {

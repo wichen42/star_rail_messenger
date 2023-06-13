@@ -20,6 +20,7 @@ import emote_10 from "../assets/emotes/emote_10.png";
 const Input = () => {
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
+  const [err, setErr] = useState(false);
   const dialogRef = useRef(null);
   const {currentUser} = useContext(AuthContext);
   const {data} = useContext(ChatContext);
@@ -29,18 +30,27 @@ const Input = () => {
   //TODO: 1. NEED TO ADDRESS FIREBASE STORAGE OBJECT DOES NOT EXSIST ERROR. DISABLE IMAGE UPLOAD TIME BEING.
   //      2. DISABLE INPUT IF NO USER SELECTED
   const handleSend = async () => {
+
+    if (!data) {
+      console.log("No chat selected");
+      setErr(true);
+      return;
+    };
+
     if (image) {
       const storageRef = ref(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, image);
       
-      console.log(image)
-      console.log(storageRef)
+      // console.log(image)
+      // console.log(storageRef)
       uploadTask.on(
         (error) => {
           console.log(`Something went wrong with input upload: ${error}`);
           console.log(image);
         },
         () => {
+          console.log(uploadTask.snapshot.ref);
+          console.log(getDownloadURL(uploadTask.snapshot.ref).then(() => {}));
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             await updateDoc(doc(db, "chats", data.chatId), {
               messages: arrayUnion({
@@ -51,6 +61,9 @@ const Input = () => {
                 img: downloadURL,
               }),
             });
+          })
+          .catch( error => {
+            console.log(`Error: ${error}`);
           });
         }
       );
@@ -120,10 +133,10 @@ const Input = () => {
       <input type="text" placeholder='Type something...' onChange={(e) => setText(e.target.value)} value={text} onKeyDown={handleKey}/>
       <div className="send">
         <span class="material-symbols-outlined" onClick={handleOpen}>sentiment_satisfied</span>
-        {/* <input type="file" id="file" style={{display:"none"}} onChange={(e) => setImage(e.target.files[0])}/>
+        <input type="file" id="file" style={{display:"none"}} onChange={(e) => setImage(e.target.files[0])}/>
         <label htmlFor="file">
           <span class="material-symbols-outlined">image</span>
-        </label> */}
+        </label>
           <button onClick={handleSend} >Send</button>
       </div>
     </div>
