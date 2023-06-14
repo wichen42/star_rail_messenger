@@ -44,9 +44,12 @@ const Input = () => {
       // console.log(image)
       // console.log(storageRef)
       uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
         (error) => {
           console.log(`Something went wrong with input upload: ${error}`);
           console.log(image);
+          
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
