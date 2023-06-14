@@ -47,9 +47,9 @@ const Chat = () => {
         <div className="chat-info">
           <span>{data.user?.displayName}</span>
           <div className="chat-icons">
-            <span class="material-symbols-outlined">videocam</span>
-            <span class="material-symbols-outlined">person_add</span>
-            <span class="material-symbols-outlined">more_horiz</span>
+            <span className="material-symbols-outlined">videocam</span>
+            <span className="material-symbols-outlined">person_add</span>
+            <span className="material-symbols-outlined">more_horiz</span>
           </div>
         </div>
 

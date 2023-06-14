@@ -43,7 +43,7 @@ const Chats = () => {
             <span>{chat[1].userInfo.displayName}</span>
             <p>{chat[1].lastMessage?.text}</p>
           </div>
-          <span class="material-symbols-outlined">arrow_forward_ios</span>
+          <span className="material-symbols-outlined">arrow_forward_ios</span>
         </div>
       </div>
       ))}
@@ -54,7 +54,7 @@ const Chats = () => {
             <span>PomPom Bot</span>
             <p>Powered by ChatGPT</p>
           </div>
-          <span class="material-symbols-outlined">arrow_forward_ios</span>
+          <span className="material-symbols-outlined">arrow_forward_ios</span>
         </div>
       </div> */}
     </div>

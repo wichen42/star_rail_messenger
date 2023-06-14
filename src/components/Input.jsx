@@ -125,18 +125,18 @@ const Input = () => {
         <form method='dialog'>
           <button>X</button>
           <div>
-            {emotes.map((emote) => {
-              return <img src={emote} alt="" onClick={handleClick} />
+            {emotes.map((emote, idx) => {
+              return <img src={emote} key={idx} alt="" onClick={handleClick} />
             })}
           </div>
         </form>
       </dialog>
       <input type="text" placeholder='Type something...' onChange={(e) => setText(e.target.value)} value={text} onKeyDown={handleKey}/>
       <div className="send">
-        <span class="material-symbols-outlined" onClick={handleOpen}>sentiment_satisfied</span>
+        <span className="material-symbols-outlined" onClick={handleOpen}>sentiment_satisfied</span>
         <input type="file" id="file" style={{display:"none"}} onChange={(e) => setImage(e.target.files[0])}/>
         <label htmlFor="file">
-          <span class="material-symbols-outlined">image</span>
+          <span className="material-symbols-outlined">image</span>
         </label>
           <button onClick={handleSend} >Send</button>
       </div>
