@@ -49,8 +49,6 @@ const Input = () => {
           console.log(image);
         },
         () => {
-          console.log(uploadTask.snapshot.ref);
-          console.log(getDownloadURL(uploadTask.snapshot.ref).then(() => {}));
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             await updateDoc(doc(db, "chats", data.chatId), {
               messages: arrayUnion({
@@ -61,7 +59,7 @@ const Input = () => {
                 img: downloadURL,
               }),
             });
-          })
+          }).then(console.log("chat update success..."))
           .catch( error => {
             console.log(`Error: ${error}`);
           });
