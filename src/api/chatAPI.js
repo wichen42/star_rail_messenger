@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+const fetch = require('node-fetch');
 const PORT = 8000;
 const express = require('express');
 const cors = require('cors');
@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.post('/completions', async (req, res) => {
+app.post('/chatbot', async (req, res) => {
     const options = {
         method: "POST",
         headers: {
@@ -23,9 +23,9 @@ app.post('/completions', async (req, res) => {
     };
     try {
         console.log(options);
-        const res = await fetch('https://api.openai.com/v1/chat/completions', options);
-        const data = res.json();
-        res.send(data)
+        const response = await fetch('https://api.openai.com/v1/chat/completions', options);
+        const data = await response.json();
+        res.send(data);
     } catch (error) {
         console.log(`Error with Chat completion: ${error}`);
     }

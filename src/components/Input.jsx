@@ -158,6 +158,26 @@ const Input = () => {
     }
   };
 
+  const handleTest = async () => {
+    const options = {
+      method: "POST",
+      body: JSON.stringify({
+        message: "hello world"
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+    try {
+      const response = await fetch('http://localhost:8000/chatbot', options);
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      setErr(true);
+      console.log(`Error with chatbot endpoint: ${error}`);
+    }
+  };
+
   return (
     <div className='input'>
      <dialog className='emote-modal' ref={dialogRef}>
@@ -177,6 +197,7 @@ const Input = () => {
         <label htmlFor="file">
           <span className="material-symbols-outlined">image</span>
         </label>
+          <button onClick={handleTest}>Test</button>
           <button onClick={handleSend} >Send</button>
       </div>
     </div>
