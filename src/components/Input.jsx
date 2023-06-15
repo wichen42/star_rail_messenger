@@ -107,21 +107,51 @@ const Input = () => {
     dialogRef.current.showModal();
   };
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
 
+    // grab emote file name from modal
     const src = e.target.getAttribute('src');
     const match = src.match(/emote_\d+/);
 
     if (match) {
       console.log(match[0]);
+      // genereate ref from Google Cloud Storage URI
       const gsReference = ref(storage, `gs://star-rail-messenger.appspot.com/${match[0]}.png`)
       try {
-        getDownloadURL(gsReference).then((downloadURL) => {
+        // update chats (group chat)
+        getDownloadURL(gsReference).then(async (downloadURL) => {
           console.log(downloadURL);
-        });
+            await updateDoc(doc(db, "chats", data.chatId), {
+              messages: arrayUnion({
+                id: uuid(),
+                text,
+                senderId: currentUser.uid,
+                date: Timestamp.now(),
+                img: downloadURL,
+              }),
+            });
+
+        }).then(console.log("emote send sucess...."));
       } catch (error) {
         console.log(`Error with getDownloadURL: ${error}`);
-      }
+      };
+
+      // Update last message for current user
+      await updateDoc(doc(db, "userChats", currentUser.uid), {
+        [data.chatId + ".lastMessage"]: {
+          text,
+        },
+        [data.chatId + ".date"]: serverTimestamp(),
+      });
+
+      // Update last message for other user
+      await updateDoc(doc(db, "userChats", data.user.uid), {
+        [data.chatId + ".lastMessage"]: {
+          text,
+        },
+        [data.chatId + ".date"]: serverTimestamp(),
+      });
+      console.log(data.user.uid);
     } else {
       console.log("No match found");
     }
