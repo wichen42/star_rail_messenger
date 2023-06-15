@@ -27,8 +27,9 @@ const Input = () => {
 
   const emotes = [emote_1, emote_2, emote_3, emote_4, emote_5, emote_6, emote_7, emote_8, emote_9, emote_10];
 
-  //TODO: 1. NEED TO ADDRESS FIREBASE STORAGE OBJECT DOES NOT EXSIST ERROR. DISABLE IMAGE UPLOAD TIME BEING.
-  //      2. DISABLE INPUT IF NO USER SELECTED
+  //TODO: 1. DISABLE INPUT IF NO USER SELECTED
+  //      2. CLEANUP SEND CODE FOR HANDLESEND AND HANDLECLICK
+
   const handleSend = async () => {
 
     if (!data) {
