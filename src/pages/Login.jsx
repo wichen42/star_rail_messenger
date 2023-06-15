@@ -10,12 +10,13 @@ const Login = () => {
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // TODO: This might be causing an null object error since there is no current user on register / login until after form is submitted
-  // if (currentUser) navigate("/");
+  // TODO: 1. NULL OBJECT ERROR - MIGHT BE DUE TO PAGE LOAD INTERACTION W/ CURRENTUSER AND NAVIGATE("/")
+  //       2. ERROR WITH LOGIN: FIREBASEERROR: FIREBASE: ERROR (AUTH/INVALID-EMAIL)
 
   const handleLogin = async (email, password) => {
     try{
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password)
+      .then(console.log("Logging in..."));
       navigate("/");
     }catch(error) {
       setErr(true);

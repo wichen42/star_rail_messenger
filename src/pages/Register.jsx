@@ -13,9 +13,25 @@ import { AuthContext } from "../context/AuthContext";
 
 const Register = () => {
     const [err, setErr] = useState(false);
+    const [image, setImage] = useState(null);
+    const [imageURL, setImageURL] = useState(null);
     const navigate = useNavigate();
     const { currentUser } = useContext(AuthContext);
 
+    const handleImage = (e) => {
+        const file = e.currentTarget.files[0];
+
+        if (file) {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                setImage(file);
+                setImageURL(fileReader.result);
+            };
+        };
+    };
+
+    const preview = imageURL ? <img src={imageURL} alt="" /> : null;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -106,9 +122,9 @@ const Register = () => {
                         <input type="text" placeholder="Display Name"/>
                         <input type="email" placeholder="Email"/>
                         <input type="password" placeholder="Password"/>
-                        <input type="file" id="file" style={{display:"none"}} placeholder="Avatar"/>
+                        <input type="file" id="file" style={{display:"none"}} placeholder="Avatar" onChange={handleImage}/>
                         <label htmlFor="file">
-                            <img src={addAvatar} alt="" />
+                            {preview ? preview : <img src={addAvatar} alt="" />}
                             <span>Add an Avatar</span>
                         </label>
                         <button>Sign Up</button>
