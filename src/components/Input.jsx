@@ -114,6 +114,14 @@ const Input = () => {
 
     if (match) {
       console.log(match[0]);
+      const gsReference = ref(storage, `gs://star-rail-messenger.appspot.com/${match[0]}.png`)
+      try {
+        getDownloadURL(gsReference).then((downloadURL) => {
+          console.log(downloadURL);
+        });
+      } catch (error) {
+        console.log(`Error with getDownloadURL: ${error}`);
+      }
     } else {
       console.log("No match found");
     }
