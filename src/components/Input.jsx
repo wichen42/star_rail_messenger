@@ -29,6 +29,14 @@ const Input = () => {
 
   //TODO: 1. DISABLE INPUT IF NO USER SELECTED
   //      2. CLEANUP SEND CODE FOR HANDLESEND AND HANDLECLICK
+  //      3. TEST CHATBOT WITH CONDUCTOR ACC - CREATE NEW CHATBOT ACC WHEN READY
+
+  const conductor = {
+    displayName: "The Conductor",
+    email: "conductor@gmail.com",
+    photoURL: "https://firebasestorage.googleapis.com/v0/b/star-rail-messenger.appspot.com/o/The%20Conductor?alt=media&token=0e5f86c0-ba86-4848-b6e4-6f46ffad92ec",
+    uid: "mg7N4iGnF8V0nKAZvkgmiUguzal2",
+  }
 
   const handleSend = async () => {
 
@@ -42,8 +50,6 @@ const Input = () => {
       const storageRef = ref(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, image);
       
-      // console.log(image)
-      // console.log(storageRef)
       uploadTask.on(
         "state_changed",
         (snapshot) => {},
