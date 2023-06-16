@@ -25,6 +25,7 @@ const Input = () => {
   const dialogRef = useRef(null);
   const {currentUser} = useContext(AuthContext);
   const {data} = useContext(ChatContext);
+  const sendMessage = useSendMessage();
 
   const emotes = [emote_1, emote_2, emote_3, emote_4, emote_5, emote_6, emote_7, emote_8, emote_9, emote_10];
 
@@ -77,33 +78,8 @@ const Input = () => {
         userId: data.user.uid,
       };
       
-      await useSendMessage(messageData);
-
-      // await updateDoc(doc(db, "chats", data.chatId), {
-      //   messages: arrayUnion({
-      //     id: uuid(),
-      //     text,
-      //     senderId: currentUser.uid,
-      //     date: Timestamp.now(),
-      //   }),
-      // });
+      await sendMessage(messageData);
     };
-
-    // Update last message for current user
-    // await updateDoc(doc(db, "userChats", currentUser.uid), {
-    //   [data.chatId + ".lastMessage"]: {
-    //     text,
-    //   },
-    //   [data.chatId + ".date"]: serverTimestamp(),
-    // });
-
-    // // Update last message for other user
-    // await updateDoc(doc(db, "userChats", data.user.uid), {
-    //   [data.chatId + ".lastMessage"]: {
-    //     text,
-    //   },
-    //   [data.chatId + ".date"]: serverTimestamp(),
-    // });
 
     setText("");
     setImage(null);
