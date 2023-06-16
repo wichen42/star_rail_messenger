@@ -70,6 +70,7 @@ const Input = () => {
         }
       );
     } else {
+
       await updateDoc(doc(db, "chats", data.chatId), {
         messages: arrayUnion({
           id: uuid(),
