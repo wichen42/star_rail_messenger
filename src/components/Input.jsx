@@ -40,12 +40,6 @@ const Input = () => {
 
   const handleSend = async () => {
 
-    if (!data) {
-      console.log("No chat selected");
-      setErr(true);
-      return;
-    };
-
     if (image) {
       const storageRef = ref(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, image);
