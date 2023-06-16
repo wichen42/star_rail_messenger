@@ -15,6 +15,7 @@ import emote_7 from "../assets/emotes/emote_7.png";
 import emote_8 from "../assets/emotes/emote_8.png";
 import emote_9 from "../assets/emotes/emote_9.png";
 import emote_10 from "../assets/emotes/emote_10.png";
+import useSendMessage from '../utils/SendMessage';
 
 
 const Input = () => {
@@ -70,32 +71,39 @@ const Input = () => {
         }
       );
     } else {
+      const messageData = {
+        text: text,
+        chatId: data.chatId,
+        userId: data.user.uid,
+      };
+      
+      await useSendMessage(messageData);
 
-      await updateDoc(doc(db, "chats", data.chatId), {
-        messages: arrayUnion({
-          id: uuid(),
-          text,
-          senderId: currentUser.uid,
-          date: Timestamp.now(),
-        }),
-      });
+      // await updateDoc(doc(db, "chats", data.chatId), {
+      //   messages: arrayUnion({
+      //     id: uuid(),
+      //     text,
+      //     senderId: currentUser.uid,
+      //     date: Timestamp.now(),
+      //   }),
+      // });
     };
 
     // Update last message for current user
-    await updateDoc(doc(db, "userChats", currentUser.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text,
-      },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
+    // await updateDoc(doc(db, "userChats", currentUser.uid), {
+    //   [data.chatId + ".lastMessage"]: {
+    //     text,
+    //   },
+    //   [data.chatId + ".date"]: serverTimestamp(),
+    // });
 
-    // Update last message for other user
-    await updateDoc(doc(db, "userChats", data.user.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text,
-      },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
+    // // Update last message for other user
+    // await updateDoc(doc(db, "userChats", data.user.uid), {
+    //   [data.chatId + ".lastMessage"]: {
+    //     text,
+    //   },
+    //   [data.chatId + ".date"]: serverTimestamp(),
+    // });
 
     setText("");
     setImage(null);
