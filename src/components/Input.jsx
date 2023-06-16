@@ -30,8 +30,7 @@ const Input = () => {
   const emotes = [emote_1, emote_2, emote_3, emote_4, emote_5, emote_6, emote_7, emote_8, emote_9, emote_10];
 
   //TODO: 1. DISABLE INPUT IF NO USER SELECTED
-  //      2. CLEANUP SEND CODE FOR HANDLESEND AND HANDLECLICK
-  //      3. TEST CHATBOT WITH CONDUCTOR ACC - CREATE NEW CHATBOT ACC WHEN READY
+  //      2. TEST CHATBOT WITH CONDUCTOR ACC - CREATE NEW CHATBOT ACC WHEN READY
 
   const conductor = {
     displayName: "The Conductor",
@@ -78,7 +77,6 @@ const Input = () => {
       try {
         // update chats (group chat)
         getDownloadURL(gsReference).then(async (downloadURL) => {
-          console.log(downloadURL);
             await updateDoc(doc(db, "chats", data.chatId), {
               messages: arrayUnion({
                 id: uuid(),
@@ -109,9 +107,8 @@ const Input = () => {
         },
         [data.chatId + ".date"]: serverTimestamp(),
       });
-      console.log(data.user.uid);
     } else {
-      console.log("No match found");
+      console.log("Something went wrong with emote send: No match found");
     }
   };
 
