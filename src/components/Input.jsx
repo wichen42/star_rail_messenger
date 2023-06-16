@@ -158,6 +158,7 @@ const Input = () => {
     }
   };
 
+  // Test function for chatgpt functionality - remove once handlesend chatbot is set up
   const handleTest = async () => {
     const options = {
       method: "POST",
