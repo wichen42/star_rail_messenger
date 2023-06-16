@@ -41,43 +41,15 @@ const Input = () => {
   }
 
   const handleSend = async () => {
+    const messageData = {
+      text: text,
+      chatId: data.chatId,
+      userId: data.user.uid,
+    };
 
     if (image) {
-      const storageRef = ref(storage, uuid());
-      const uploadTask = uploadBytesResumable(storageRef, image);
-      
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (error) => {
-          console.log(`Something went wrong with input upload: ${error}`);
-          console.log(image);
-          
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await updateDoc(doc(db, "chats", data.chatId), {
-              messages: arrayUnion({
-                id: uuid(),
-                text,
-                senderId: currentUser.uid,
-                date: Timestamp.now(),
-                img: downloadURL,
-              }),
-            });
-          }).then(console.log("chat update success..."))
-          .catch( error => {
-            console.log(`Error: ${error}`);
-          });
-        }
-      );
+      await sendMessage(messageData, image);
     } else {
-      const messageData = {
-        text: text,
-        chatId: data.chatId,
-        userId: data.user.uid,
-      };
-      
       await sendMessage(messageData);
     };
 
