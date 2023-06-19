@@ -5,6 +5,7 @@ import { ChatContext } from '../context/ChatContext';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
 import { AuthContext } from '../context/AuthContext';
+import useConvertDate from '../utils/ConvertDate';
 
 const Chat = () => {
   const {data} = useContext(ChatContext);
@@ -12,6 +13,7 @@ const Chat = () => {
   const {dispatch} = useContext(ChatContext);
   const [chats, setChats] = useState([]);
   const [hasChats, setHasChats] = useState(false);
+  const convertDate = useConvertDate();
 
   // TODO: 1. POPULATE CHAT WINDOW WITH LATEST CHAT ON FIRST LOAD 
 
@@ -28,15 +30,32 @@ const Chat = () => {
     
     currentUser.uid && getChats();
 
-    if (!hasChats && chats) { 
-      const chatIds = Object.keys(chats);
-      console.log(chats);
-      if (chatIds.length > 0) {
-        const user = chats[chatIds[1]].userInfo;
-        console.log(user);
-        setHasChats(true);
-      };
-    };
+    // Load initial chat
+    
+    if (!hasChats && chats && Object.keys(chats).length > 0) {
+      const chatList = Object.values(chats);
+      let mostRecentUser = null;
+      let mostRecentDate = null;
+
+      chatList.forEach((chat) => {
+        const chatDate = chat.date;
+        const convertedDate = convertDate(chatDate);
+
+        if (!mostRecentDate || convertedDate > mostRecentDate || (convertedDate === mostRecentDate &&
+            (chatDate.seconds > mostRecentDate.seconds ||
+            (chatDate.seconds === mostRecentDate.seconds && chatDate.nanoseconds > mostRecentDate.nanoseconds)))) {
+          mostRecentUser = chat.userInfo;
+          mostRecentDate = convertedDate;
+        }
+      });
+
+      if (mostRecentUser) {
+        dispatch({ type: "CHANGE_USER", payload: mostRecentUser });
+        console.log('User with most recent date:', mostRecentUser);
+      }
+
+      setHasChats(true);
+    }
 
   }, [currentUser.uid, hasChats, chats]);
 
