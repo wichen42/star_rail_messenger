@@ -11,35 +11,40 @@ const Chat = () => {
   const {currentUser} = useContext(AuthContext);
   const {dispatch} = useContext(ChatContext);
   const [chats, setChats] = useState([]);
+  const [hasChats, setHasChats] = useState(false);
+
+  // TODO: 1. POPULATE CHAT WINDOW WITH LATEST CHAT ON FIRST LOAD 
 
   useEffect(() => {
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
         setChats(doc.data());
       });
-  
+      
       return () => {
         unsub();
       };
     };
-
+    
     currentUser.uid && getChats();
 
-  }, [currentUser.uid]);
+    if (!hasChats && chats) { 
+      const chatIds = Object.keys(chats);
+      if (chatIds.length > 0) {
+        const user = chats[chatIds[1]].userInfo;
+        console.log(user);
+        setHasChats(true);
+      };
+    };
+
+  }, [currentUser.uid, hasChats, chats]);
 
 
-  // TODO: 1. POPULATE CHAT WINDOW WITH LATEST CHAT ON FIRST LOAD 
-  // useEffect(() => {
-  //     // Get most recent chat and load into Chat
-  //     // console.log(chats);
-  //     const chatDup = JSON.parse(JSON.stringify(chats));
-  //     {chatDup && Object.entries(chatDup)?.sort((a,b) => b[1].date - a[1].date).map((chat) => (
-  //       // console.log(chat[1]);
-  //       // console.table(chat[1]);
-  //       dispatch({type: "CHANGE_USER", payload: chat[1].userInfo})
-  //   ))};
-
-  // }, [chats, dispatch]);
+  // {
+  //   "uid": "n081XOLtRGcDtAn0D26XVlBJIt63",
+  //   "photoURL": "https://firebasestorage.googleapis.com/v0/b/star-rail-messenger.appspot.com/o/alex?alt=media&token=9d141b62-6591-493f-816c-ce88f32f5c14",
+  //   "displayName": "alex"
+  // }
 
 
   return (
