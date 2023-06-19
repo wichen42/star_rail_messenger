@@ -13,20 +13,24 @@ const Message = ({message}) => {
   const ref = useRef();
   const convertDate = useConvertDate();
 
+  //TODO: ADJUST SCROLL TO BOTTOM OF CHAT
+
   useEffect(() => {
-    ref.current?.scrollIntoView({behavior: "smooth"});
+
+    const scrollToBottom = () => {
+      ref.current?.scrollIntoView({behavior: "smooth", block: "end"});
+    };
 
     const getDate = () => {
       
       const fireBaseTime = convertDate(message.date);
       setDate(fireBaseTime);
-      
+
       return () => {
         getDate();
       };
     };
     
-
     const getUsername = () => {
       const unsub = onSnapshot(doc(db, "users", message.senderId), (doc) => {
         setUsername(doc.data().displayName)
@@ -39,6 +43,7 @@ const Message = ({message}) => {
 
     getDate();
     getUsername();
+    scrollToBottom();
 
     
   }, [message]);

@@ -15,8 +15,6 @@ const Chat = () => {
   const [hasChats, setHasChats] = useState(false);
   const convertDate = useConvertDate();
 
-  // TODO: 1. POPULATE CHAT WINDOW WITH LATEST CHAT ON FIRST LOAD 
-
   useEffect(() => {
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
@@ -31,7 +29,6 @@ const Chat = () => {
     currentUser.uid && getChats();
 
     // Load initial chat
-    
     if (!hasChats && chats && Object.keys(chats).length > 0) {
       const chatList = Object.values(chats);
       let mostRecentUser = null;
@@ -51,20 +48,13 @@ const Chat = () => {
 
       if (mostRecentUser) {
         dispatch({ type: "CHANGE_USER", payload: mostRecentUser });
-        console.log('User with most recent date:', mostRecentUser);
+        // console.log('User with most recent date:', mostRecentUser);
       }
 
       setHasChats(true);
     }
 
   }, [currentUser.uid, hasChats, chats]);
-
-
-  // {
-  //   "uid": "n081XOLtRGcDtAn0D26XVlBJIt63",
-  //   "photoURL": "https://firebasestorage.googleapis.com/v0/b/star-rail-messenger.appspot.com/o/alex?alt=media&token=9d141b62-6591-493f-816c-ce88f32f5c14",
-  //   "displayName": "alex"
-  // }
 
 
   return (

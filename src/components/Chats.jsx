@@ -4,7 +4,6 @@ import { db } from '../firebase';
 import { useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { ChatContext } from '../context/ChatContext';
-import PomPom from '../assets/pompom.jpg';
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
@@ -47,16 +46,6 @@ const Chats = () => {
         </div>
       </div>
       ))}
-      {/* <div className="user-chat">
-        <img src={PomPom} alt="" />
-        <div className="user-chat-info">
-          <div>
-            <span>PomPom Bot</span>
-            <p>Powered by ChatGPT</p>
-          </div>
-          <span className="material-symbols-outlined">arrow_forward_ios</span>
-        </div>
-      </div> */}
     </div>
   )
 }
