@@ -3,6 +3,7 @@ import { AuthContext } from '../context/AuthContext';
 import { ChatContext } from '../context/ChatContext';
 import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
+import useConvertDate from '../utils/ConvertDate';
 
 const Message = ({message}) => {
   const {currentUser} = useContext(AuthContext);
@@ -10,22 +11,18 @@ const Message = ({message}) => {
   const [date, setDate] = useState("");
   const [username, setUsername] = useState("");
   const ref = useRef();
-
+  const convertDate = useConvertDate();
 
   useEffect(() => {
     ref.current?.scrollIntoView({behavior: "smooth"});
 
     const getDate = () => {
-      const fireBaseTime = new Date(
-        message.date.seconds * 1000 + message.date.nanoseconds / 1000000
-      );
-
-      const unsub = () => {
-        setDate(fireBaseTime.toLocaleDateString());
-      };
-
+      
+      const fireBaseTime = convertDate(message.date);
+      setDate(fireBaseTime);
+      
       return () => {
-        unsub();
+        getDate();
       };
     };
     
@@ -42,6 +39,7 @@ const Message = ({message}) => {
 
     getDate();
     getUsername();
+
     
   }, [message]);
 

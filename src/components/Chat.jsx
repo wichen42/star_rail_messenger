@@ -30,6 +30,7 @@ const Chat = () => {
 
     if (!hasChats && chats) { 
       const chatIds = Object.keys(chats);
+      console.log(chats);
       if (chatIds.length > 0) {
         const user = chats[chatIds[1]].userInfo;
         console.log(user);
