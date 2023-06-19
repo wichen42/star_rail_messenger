@@ -29,8 +29,7 @@ const Input = () => {
 
   const emotes = [emote_1, emote_2, emote_3, emote_4, emote_5, emote_6, emote_7, emote_8, emote_9, emote_10];
 
-  //TODO: 1. DISABLE INPUT IF NO USER SELECTED
-  //      2. TEST CHATBOT WITH CONDUCTOR ACC - CREATE NEW CHATBOT ACC WHEN READY
+  //TODO: 1. TEST CHATBOT WITH CONDUCTOR ACC - CREATE NEW CHATBOT ACC WHEN READY
 
   const testBot = {
     displayName: "The Conductor",

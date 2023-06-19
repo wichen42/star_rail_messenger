@@ -10,16 +10,10 @@ const Message = ({message}) => {
   const {data} = useContext(ChatContext);
   const [date, setDate] = useState("");
   const [username, setUsername] = useState("");
-  const ref = useRef();
   const convertDate = useConvertDate();
-
-  //TODO: ADJUST SCROLL TO BOTTOM OF CHAT
+  const imageRef = useRef();
 
   useEffect(() => {
-
-    const scrollToBottom = () => {
-      ref.current?.scrollIntoView({behavior: "smooth", block: "end"});
-    };
 
     const getDate = () => {
       
@@ -43,14 +37,27 @@ const Message = ({message}) => {
 
     getDate();
     getUsername();
-    scrollToBottom();
-
     
   }, [message]);
 
+  useEffect(() => {
+    const handleImageLoad = () => {
+      const messagesContainer = imageRef.current.closest('.messages');
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    };
+
+    if (imageRef.current) {
+      const image = imageRef.current;
+      if (image.complete) {
+        handleImageLoad();
+      } else {
+        image.onLoad = handleImageLoad;
+      };
+    };
+  }, []);
 
   return (
-    <div ref={ref} className={`message ${message.senderId === currentUser.uid && "owner"}`}>
+    <div className={`message ${message.senderId === currentUser.uid && "owner"}`}>
         <div className="message-info">
             <img src={message.senderId === currentUser.uid ? currentUser.photoURL : data.user.photoURL} alt="" />
             <span>{date}</span>
