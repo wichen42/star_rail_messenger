@@ -16,29 +16,22 @@ import emote_8 from "../assets/emotes/emote_8.png";
 import emote_9 from "../assets/emotes/emote_9.png";
 import emote_10 from "../assets/emotes/emote_10.png";
 import useSendMessage from '../utils/SendMessage';
-import getChatBotResponse from '../utils/ChatBotResponse';
+import useSendBotMessage from '../utils/SendBotMessage';
 
 
 const Input = () => {
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
-  const [message, setMessage] = useState({});
   const [err, setErr] = useState(false);
   const dialogRef = useRef(null);
   const {currentUser} = useContext(AuthContext);
   const {data} = useContext(ChatContext);
   const sendMessage = useSendMessage();
+  const sendBotMessage = useSendBotMessage();
 
   const emotes = [emote_1, emote_2, emote_3, emote_4, emote_5, emote_6, emote_7, emote_8, emote_9, emote_10];
 
   //TODO: 1. TEST CHATBOT WITH CONDUCTOR ACC - CREATE NEW CHATBOT ACC WHEN READY
-
-  const testBot = {
-    displayName: "The Conductor",
-    email: "conductor@gmail.com",
-    photoURL: "https://firebasestorage.googleapis.com/v0/b/star-rail-messenger.appspot.com/o/The%20Conductor?alt=media&token=0e5f86c0-ba86-4848-b6e4-6f46ffad92ec",
-    uid: "mg7N4iGnF8V0nKAZvkgmiUguzal2",
-  }
 
   const messageData = {
     text: text,
@@ -46,11 +39,8 @@ const Input = () => {
     userId: data.user.uid,
   };
 
-  useEffect(() => {
-    console.log('Updated Message ', message);
-  }, [message]);
-
   const handleSend = async () => {
+
 
     if (image) {
       await sendMessage(messageData, image);
@@ -122,8 +112,16 @@ const Input = () => {
 
   // Test function for chatgpt functionality - remove once handlesend chatbot is set up
   const handleTest = async () => {
-    // Check if messageData.user === chatbot
-    if (messageData.userId === "mg7N4iGnF8V0nKAZvkgmiUguzal2") {
+
+    const testBot = {
+      displayName: "The Conductor",
+      email: "conductor@gmail.com",
+      photoURL: "https://firebasestorage.googleapis.com/v0/b/star-rail-messenger.appspot.com/o/The%20Conductor?alt=media&token=0e5f86c0-ba86-4848-b6e4-6f46ffad92ec",
+      uid: "mg7N4iGnF8V0nKAZvkgmiUguzal2",
+    };
+
+    // Check if data.user === chatbot
+    if (data.user.uid === "mg7N4iGnF8V0nKAZvkgmiUguzal2") {
       // Pass messageData to chatAPI for bot response
       const options = {
         method: "POST",
@@ -137,12 +135,24 @@ const Input = () => {
       try {
         const response = await fetch('http://localhost:8000/chatbot', options);
         if (response.ok) {
-          const data = await response.json();
-          console.log("Setting Message...");
-          setMessage(data.choices[0].message);
+          const botData = await response.json();
+          // console.log(botData.choices[0].message.content);
+          const botMessage = {
+            text: botData.choices[0].message.content,
+            chatId: data.chatId,
+            userId: data.user.uid,
+          };
+
+          // console.log(botMessage);
+          // Update firebase collection for message to chatbot
+          console.log(messageData);
+          // await sendMessage(messageData);
+          // Update firebase collection for message to current user
+          // await sendBotMessage(botMessage);
+
         } else {
           console.log('Req failed with status: ', response.status);
-        }
+        };
         
       } catch (error) {
         setErr(true);
@@ -151,8 +161,9 @@ const Input = () => {
 
     }
 
-    // Update firebase collections for current user and chatbot
     
+
+
     
   };
 
