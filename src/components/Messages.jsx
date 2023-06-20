@@ -26,7 +26,6 @@ const Messages = () => {
   }, [data.chatId]);
 
   useEffect(() => {
-    console.log("effect triggered");
     const messagesContainer = document.querySelector('.messages');
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }, [messages]);

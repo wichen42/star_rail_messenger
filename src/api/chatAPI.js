@@ -17,7 +17,7 @@ app.post('/chatbot', async (req, res) => {
         },
         body: JSON.stringify({
             model: "gpt-3.5-turbo",
-            messages: [{role: "user", content: "hello world"}],
+            messages: [{role: "user", content: req.body.message}],
             max_tokens: 100,
         }),
     };

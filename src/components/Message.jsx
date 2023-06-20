@@ -41,7 +41,6 @@ const Message = ({message}) => {
   }, [message]);
 
   useEffect(() => {
-    console.log("effect trigger in Message");
     const handleImageLoad = () => {
       const messagesContainer = imageRef.current.closest('.messages');
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
