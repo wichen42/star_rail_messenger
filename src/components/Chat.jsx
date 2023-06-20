@@ -28,6 +28,9 @@ const Chat = () => {
     
     currentUser.uid && getChats();
 
+  }, [currentUser.uid]);
+
+  useEffect(() => {
     // Load initial chat
     if (!hasChats && chats && Object.keys(chats).length > 0) {
       const chatList = Object.values(chats);
@@ -53,8 +56,7 @@ const Chat = () => {
 
       setHasChats(true);
     }
-
-  }, [currentUser.uid, hasChats, chats])
+  }, [hasChats, chats]);
 
 
   return (
