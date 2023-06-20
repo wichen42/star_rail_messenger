@@ -9,30 +9,42 @@ function useSendBotMessage () {
     
     async function sendBotMessage (messageData) {
         // Update chats collection with bot response between chatbot and current user
-        await updateDoc(doc(db, "chats", messageData.chatId), {
-            messages: arrayUnion({
-                id: uuid(),
-                text: messageData.text,
-                senderId: "mg7N4iGnF8V0nKAZvkgmiUguzal2",
-                date: Timestamp.now(),
-            }),
-        });
+        try {
+            await updateDoc(doc(db, "chats", messageData.chatId), {
+                messages: arrayUnion({
+                    id: uuid(),
+                    text: messageData.text,
+                    senderId: "mg7N4iGnF8V0nKAZvkgmiUguzal2",
+                    date: Timestamp.now(),
+                }),
+            });
+        } catch (error) {
+            console.log(`Error with updating chatbot's userChats: ${error}`);
+        };
 
         // Update last message for current user
-        await updateDoc(doc(db, "userChats", currentUser.uid), {
-            [messageData.chatId + ".lastMessage"]: {
-                text: messageData.text,
-            },
-            [messageData.chatId + ".date"]: serverTimestamp(),
-        });
+        try {
+            await updateDoc(doc(db, "userChats", currentUser.uid), {
+                [messageData.chatId + ".lastMessage"]: {
+                    text: messageData.text,
+                },
+                [messageData.chatId + ".date"]: serverTimestamp(),
+            });
+        } catch (error) {
+            console.log(`Error with updating current user's last message for bot response: ${error}`);
+        }
 
         // Update last message for chatbot
-        await updateDoc(doc(db, "userChats", messageData.userId), {
-            [messageData.chatId + ".lastMessage"]: {
-                text: messageData.text,
-            },
-            [messageData.chatId + ".date"]: serverTimestamp(),
-        });
+        try {
+            await updateDoc(doc(db, "userChats", messageData.userId), {
+                [messageData.chatId + ".lastMessage"]: {
+                    text: messageData.text,
+                },
+                [messageData.chatId + ".date"]: serverTimestamp(),
+            });
+        } catch (error) {
+            console.log(`Error with updating chatbot's last message: ${error}`);
+        }
     };
 
     return sendBotMessage;
