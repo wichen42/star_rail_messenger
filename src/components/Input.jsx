@@ -113,13 +113,6 @@ const Input = () => {
   // Test function for chatgpt functionality - remove once handlesend chatbot is set up
   const handleTest = async () => {
 
-    const testBot = {
-      displayName: "The Conductor",
-      email: "conductor@gmail.com",
-      photoURL: "https://firebasestorage.googleapis.com/v0/b/star-rail-messenger.appspot.com/o/The%20Conductor?alt=media&token=0e5f86c0-ba86-4848-b6e4-6f46ffad92ec",
-      uid: "mg7N4iGnF8V0nKAZvkgmiUguzal2",
-    };
-
     // Check if data.user === chatbot
     if (data.user.uid === "mg7N4iGnF8V0nKAZvkgmiUguzal2") {
       // Pass messageData to chatAPI for bot response
@@ -145,10 +138,9 @@ const Input = () => {
 
           // console.log(botMessage);
           // Update firebase collection for message to chatbot
-          console.log(messageData);
-          // await sendMessage(messageData);
+          await sendMessage(messageData);
           // Update firebase collection for message to current user
-          // await sendBotMessage(botMessage);
+          await sendBotMessage(botMessage);
 
         } else {
           console.log('Req failed with status: ', response.status);
@@ -161,10 +153,7 @@ const Input = () => {
 
     }
 
-    
-
-
-    
+    setText("");
   };
 
   return (
