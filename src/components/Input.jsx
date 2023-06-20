@@ -113,9 +113,16 @@ const Input = () => {
 
   // Test function for chatgpt functionality - remove once handlesend chatbot is set up
   const handleTest = async () => {
+    // Check if messageData.user === chatbot
+
+    // Pass messageData to chatAPI for bot response
+
+    // Update firebase collections for current user and chatbot
+
     const options = {
       method: "POST",
       body: JSON.stringify({
+        // replace message content with input
         message: "hello world"
       }),
       headers: {

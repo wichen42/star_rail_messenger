@@ -54,7 +54,7 @@ const Chat = () => {
       setHasChats(true);
     }
 
-  }, [currentUser.uid, hasChats, chats]);
+  }, [currentUser.uid, hasChats, chats])
 
 
   return (
