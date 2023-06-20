@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import { ChatContext } from '../context/ChatContext';
 import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
@@ -16,12 +16,13 @@ import emote_8 from "../assets/emotes/emote_8.png";
 import emote_9 from "../assets/emotes/emote_9.png";
 import emote_10 from "../assets/emotes/emote_10.png";
 import useSendMessage from '../utils/SendMessage';
+import getChatBotResponse from '../utils/ChatBotResponse';
 
 
 const Input = () => {
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState({});
   const [err, setErr] = useState(false);
   const dialogRef = useRef(null);
   const {currentUser} = useContext(AuthContext);
@@ -39,12 +40,17 @@ const Input = () => {
     uid: "mg7N4iGnF8V0nKAZvkgmiUguzal2",
   }
 
+  const messageData = {
+    text: text,
+    chatId: data.chatId,
+    userId: data.user.uid,
+  };
+
+  useEffect(() => {
+    console.log('Updated Message ', message);
+  }, [message]);
+
   const handleSend = async () => {
-    const messageData = {
-      text: text,
-      chatId: data.chatId,
-      userId: data.user.uid,
-    };
 
     if (image) {
       await sendMessage(messageData, image);
@@ -112,20 +118,17 @@ const Input = () => {
     }
   };
 
+  // TODO: FIRST POST REQUEST RETURNS BACK NULL. SUBSEQUENT REQUESTS ARE ONE INPUT BEHIND
+
   // Test function for chatgpt functionality - remove once handlesend chatbot is set up
   const handleTest = async () => {
-    const messageData = {
-      text: text,
-      chatId: data.chatId,
-      userId: data.user.uid,
-    };
     // Check if messageData.user === chatbot
     if (messageData.userId === "mg7N4iGnF8V0nKAZvkgmiUguzal2") {
       // Pass messageData to chatAPI for bot response
       const options = {
         method: "POST",
         body: JSON.stringify({
-          message: messageData.text,
+          message: text,
         }),
         headers: {
           "Content-Type": "application/json"
@@ -133,17 +136,23 @@ const Input = () => {
       }
       try {
         const response = await fetch('http://localhost:8000/chatbot', options);
-        const data = await response.json();
-        setMessage(data);
-        console.log(message);
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Setting Message...");
+          setMessage(data.choices[0].message);
+        } else {
+          console.log('Req failed with status: ', response.status);
+        }
+        
       } catch (error) {
         setErr(true);
         console.log(`Error with chatbot endpoint: ${error}`);
       };
+
     }
 
     // Update firebase collections for current user and chatbot
-
+    
     
   };
 

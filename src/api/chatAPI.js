@@ -22,10 +22,14 @@ app.post('/chatbot', async (req, res) => {
         }),
     };
     try {
-        console.log(options);
         const response = await fetch('https://api.openai.com/v1/chat/completions', options);
-        const data = await response.json();
-        res.send(data);
+        if (response.ok) {
+            const data = await response.json();
+            console.log('Data: ', data);
+            res.send(data);
+        } else {
+            console.log('Req failed with status: ', response.status);
+        }
     } catch (error) {
         console.log(`Error with Chat completion: ${error}`);
     }
