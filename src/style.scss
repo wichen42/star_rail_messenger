@@ -3,6 +3,7 @@
 $scrollbar: #535255;
 $dark_gray: #444547;
 $off_white: #afafaf;
+$off_blue: #818EA0;
 
 // SCSS RESET
 *, *:before, *:after{
@@ -189,7 +190,7 @@ input{
     
                         button {
                             background-color: rgba(255,255,255,0.1);
-                            border: none;
+                            border: 1px solid $off_blue;
                             font-size: 10px;
                             color: #DEDFDC;
                             cursor: pointer;
@@ -223,6 +224,7 @@ input{
                             color: white;
                             outline: none;
                             padding: 5px;
+                            border: 1px solid $off_blue;
                             &::placeholder {
                                 color: #DEDFDC;
                             }
@@ -231,7 +233,7 @@ input{
                 }
                 
                 .user-chat {
-                    border: 1px solid $off_white;
+                    border: 1px solid $off_blue;
                     margin-bottom: 15px;
                     display: flex;
                     padding: 10px;

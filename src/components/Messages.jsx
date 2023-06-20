@@ -26,6 +26,7 @@ const Messages = () => {
   }, [data.chatId]);
 
   useEffect(() => {
+    console.log("effect triggered");
     const messagesContainer = document.querySelector('.messages');
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }, [messages]);
@@ -34,8 +35,7 @@ const Messages = () => {
   return (
     <div className='messages'>
       {messages.map((message, index) => {
-        const isLastMessage = index === messages.length - 1;
-        return <Message message={message} key={message.id} ref={isLastMessage ? messagesEndRef : null}/>
+        return <Message message={message} key={message.id} />
       })}
       <div ref={messagesEndRef} />
     </div>
