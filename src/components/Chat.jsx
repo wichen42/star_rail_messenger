@@ -16,6 +16,7 @@ const Chat = () => {
   const convertDate = useConvertDate();
 
   // TODO: 1. REPLACE CHAT ICONS TO SOCIAL MEDIA PAGES
+  //       2. CLEAR LOGS BUTTON
 
   useEffect(() => {
     const getChats = () => {
