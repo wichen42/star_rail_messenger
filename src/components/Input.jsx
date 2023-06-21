@@ -43,7 +43,6 @@ const Input = () => {
 
     // Messaging chatbot
     if (data.user.uid === "mg7N4iGnF8V0nKAZvkgmiUguzal2") {
-      console.log("Run chatbot logic here...");
       
       // Send messageData to firebase to update current user and chatbot collections
       await sendMessage(messageData);
