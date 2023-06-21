@@ -31,8 +31,7 @@ const Input = () => {
 
   const emotes = [emote_1, emote_2, emote_3, emote_4, emote_5, emote_6, emote_7, emote_8, emote_9, emote_10];
 
-  //TODO: 1. ADD CHATBOT FUNCTIONALTY INTO HANDLESEND
-  //      2. STAGGER USER INPUT AND CHAT BOT RESPONSE
+  //TODO: 1. IMPLEMENT LANGCHAIN SO CHATBOT CAN REFERENCE PAST MESSAGES
 
   const messageData = {
     text: text,
@@ -42,11 +41,53 @@ const Input = () => {
 
   const handleSend = async () => {
 
-
-    if (image) {
-      await sendMessage(messageData, image);
-    } else {
+    // Messaging chatbot
+    if (data.user.uid === "mg7N4iGnF8V0nKAZvkgmiUguzal2") {
+      console.log("Run chatbot logic here...");
+      
+      // Send messageData to firebase to update current user and chatbot collections
       await sendMessage(messageData);
+
+      setText("");
+      setImage(null);
+
+      // Generate chatbot response
+      const options = {
+        method: "POST",
+        body: JSON.stringify({message: text,}),
+        headers: {"Content-Type": "application/json"},
+      };
+
+      try {
+        const response = await fetch('http://localhost:8000/chatbot', options);
+        
+        if (response.ok) {
+          const botData = await response.json();
+          const botMessage = {
+            text: botData.choices[0].message.content,
+            chatId: data.chatId,
+            userId: data.user.uid,
+          };
+
+          // Update firebase collection for message to current user
+          await sendBotMessage(botMessage);
+
+        } else {
+          console.log('Req failed with status: ', response.status);
+        };
+        
+      } catch (error) {
+        setErr(true);
+        console.log(`Error with chatbot endpoint: ${error}`);
+      };
+
+    } else {
+      // Messaging human user
+      if (image) {
+        await sendMessage(messageData, image);
+      } else {
+        await sendMessage(messageData);
+      };
     };
 
     setText("");
@@ -126,6 +167,9 @@ const Input = () => {
           "Content-Type": "application/json"
         }
       }
+      // Update firebase collection for message to chatbot
+      await sendMessage(messageData);
+
       try {
         const response = await fetch('http://localhost:8000/chatbot', options);
         if (response.ok) {
@@ -138,8 +182,7 @@ const Input = () => {
           };
 
           // console.log(botMessage);
-          // Update firebase collection for message to chatbot
-          await sendMessage(messageData);
+
           // Update firebase collection for message to current user
           await sendBotMessage(botMessage);
 
