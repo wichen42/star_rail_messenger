@@ -150,55 +150,6 @@ const Input = () => {
     }
   };
 
-  // TODO: FIRST POST REQUEST RETURNS BACK NULL. SUBSEQUENT REQUESTS ARE ONE INPUT BEHIND
-
-  // Test function for chatgpt functionality - remove once handlesend chatbot is set up
-  const handleTest = async () => {
-
-    // Check if data.user === chatbot
-    if (data.user.uid === "mg7N4iGnF8V0nKAZvkgmiUguzal2") {
-      // Pass messageData to chatAPI for bot response
-      const options = {
-        method: "POST",
-        body: JSON.stringify({
-          message: text,
-        }),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
-      // Update firebase collection for message to chatbot
-      await sendMessage(messageData);
-
-      try {
-        const response = await fetch('http://localhost:8000/chatbot', options);
-        if (response.ok) {
-          const botData = await response.json();
-          // console.log(botData.choices[0].message.content);
-          const botMessage = {
-            text: botData.choices[0].message.content,
-            chatId: data.chatId,
-            userId: data.user.uid,
-          };
-
-          // console.log(botMessage);
-
-          // Update firebase collection for message to current user
-          await sendBotMessage(botMessage);
-
-        } else {
-          console.log('Req failed with status: ', response.status);
-        };
-        
-      } catch (error) {
-        setErr(true);
-        console.log(`Error with chatbot endpoint: ${error}`);
-      };
-
-    }
-
-    setText("");
-  };
 
   return (
     <div className='input'>
@@ -219,7 +170,6 @@ const Input = () => {
         <label htmlFor="file">
           <span className="material-symbols-outlined">image</span>
         </label>
-          <button onClick={handleTest}>Test</button>
           <button onClick={handleSend} >Send</button>
       </div>
     </div>
