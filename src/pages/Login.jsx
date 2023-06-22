@@ -10,7 +10,6 @@ const Login = () => {
 
   // TODO: 1. NULL OBJECT ERROR - MIGHT BE DUE TO PAGE LOAD INTERACTION W/ CURRENTUSER AND NAVIGATE("/")
   //       2. ERROR WITH LOGIN: FIREBASEERROR: FIREBASE: ERROR (AUTH/INVALID-EMAIL)
-  //       3. LOGIN WITH GOOGLE
 
   const handleLogin = async (email, password) => {
     try{

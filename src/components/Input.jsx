@@ -5,18 +5,9 @@ import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from 'firebase
 import { db, storage } from '../firebase';
 import { v4 as uuid } from 'uuid';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import emote_1 from "../assets/emotes/emote_1.png";
-import emote_2 from "../assets/emotes/emote_2.png";
-import emote_3 from "../assets/emotes/emote_3.png";
-import emote_4 from "../assets/emotes/emote_4.png";
-import emote_5 from "../assets/emotes/emote_5.png";
-import emote_6 from "../assets/emotes/emote_6.png";
-import emote_7 from "../assets/emotes/emote_7.png";
-import emote_8 from "../assets/emotes/emote_8.png";
-import emote_9 from "../assets/emotes/emote_9.png";
-import emote_10 from "../assets/emotes/emote_10.png";
 import useSendMessage from '../utils/SendMessage';
 import useSendBotMessage from '../utils/SendBotMessage';
+import useGetChatHistory from '../utils/GetChatHistory';
 
 
 const Input = () => {
@@ -28,10 +19,9 @@ const Input = () => {
   const {data} = useContext(ChatContext);
   const sendMessage = useSendMessage();
   const sendBotMessage = useSendBotMessage();
+  const getChatHistory = useGetChatHistory();
 
-  const emotes = [emote_1, emote_2, emote_3, emote_4, emote_5, emote_6, emote_7, emote_8, emote_9, emote_10];
-
-  //TODO: 1. IMPLEMENT LANGCHAIN SO CHATBOT CAN REFERENCE PAST MESSAGES
+// TODO: 1. IMPLEMENT CHAT HISTORY CONTEXT
 
   const messageData = {
     text: text,
@@ -43,13 +33,17 @@ const Input = () => {
 
     // Messaging chatbot
     if (data.user.uid === "mg7N4iGnF8V0nKAZvkgmiUguzal2") {
-      
+
       // Send messageData to firebase to update current user and chatbot collections
       await sendMessage(messageData);
 
       setText("");
       setImage(null);
 
+      // Get data from chats collection
+      const chatHistory = await getChatHistory(data.chatId);
+      console.log(chatHistory);
+      
       // Generate chatbot response
       const options = {
         method: "POST",
