@@ -2,6 +2,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import useTruncateHistory from "./TruncateHistory";
 
 // TODO: 1. PROCESS CHAT HISTORY
 //         a. CONVERT SENDERID INTO DISPLAYNAME
@@ -11,6 +12,7 @@ import { AuthContext } from "../context/AuthContext";
 function useGetChatHistory () {
 
     const {currentUser} = useContext(AuthContext);
+    const truncateHistory = useTruncateHistory();
     
     async function getChatHistory (chatId) {
         const idMapping = {
@@ -21,6 +23,7 @@ function useGetChatHistory () {
 
         if (docSnap.exists()) {
             const history = docSnap.data().messages;
+            // Convert and condense chats collections object 
             const transformedHistory = history.map(({senderId, text}) => {
                 const transformedId = idMapping[senderId] || senderId;
                 return {
@@ -28,7 +31,12 @@ function useGetChatHistory () {
                     text: text,
                 };
             });
-            console.log(transformedHistory);
+            const transformedStr = transformedHistory.map(({name, text}) => `${name}: ${text}`)
+            .join("|||");
+
+            console.log(transformedStr);
+            let test = truncateHistory(transformedStr, 150);
+            console.log(test);
 
         } else {
             console.log("Issue with retrieving chat history...");
