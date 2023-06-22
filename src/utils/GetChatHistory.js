@@ -1,13 +1,8 @@
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import useTruncateHistory from "./TruncateHistory";
-
-// TODO: 1. PROCESS CHAT HISTORY
-//         a. CONVERT SENDERID INTO DISPLAYNAME
-//         b. FORMAT HISTORY TO DISPLAYNAME:TEXT && CHATBOT:TEXT
-//         c. DELETE OLDEST CHAT HISTORY IF PASS TOKEN LIMIT
 
 function useGetChatHistory () {
 
@@ -34,9 +29,7 @@ function useGetChatHistory () {
             const transformedStr = transformedHistory.map(({name, text}) => `${name}: ${text}`)
             .join("|||");
 
-            console.log(transformedStr);
-            let test = truncateHistory(transformedStr, 200);
-            console.log(test);
+            return truncateHistory(transformedStr, 200);
 
         } else {
             console.log("Issue with retrieving chat history...");

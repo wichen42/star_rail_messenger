@@ -60,8 +60,7 @@ const Input = () => {
       const options = {
         method: "POST",
         body: JSON.stringify({
-          message: text,
-          chatHistory: chatHistory
+          message: chatHistory,
         }),
         headers: {"Content-Type": "application/json"},
       };
