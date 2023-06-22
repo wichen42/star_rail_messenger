@@ -32,7 +32,7 @@ const Input = () => {
   const sendBotMessage = useSendBotMessage();
   const getChatHistory = useGetChatHistory();
 
-// TODO: 1. IMPLEMENT CHAT HISTORY CONTEXT
+// TODO: 1. IMPLEMENT CHAT HISTORY CONTEXT - BOT DOES NOT PARSE HISTORY
 
   const messageData = {
     text: text,
