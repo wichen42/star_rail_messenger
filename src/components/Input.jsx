@@ -40,6 +40,8 @@ const Input = () => {
     userId: data.user.uid,
   };
 
+  console.log(currentUser)
+
   const handleSend = async () => {
 
     // Messaging chatbot
