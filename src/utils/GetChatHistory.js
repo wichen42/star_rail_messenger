@@ -35,7 +35,7 @@ function useGetChatHistory () {
             .join("|||");
 
             console.log(transformedStr);
-            let test = truncateHistory(transformedStr, 150);
+            let test = truncateHistory(transformedStr, 200);
             console.log(test);
 
         } else {

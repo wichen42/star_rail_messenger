@@ -11,7 +11,7 @@ function useTruncateHistory () {
         let startIndex = truncatedContext.indexOf('|||');
         let endIndex = truncatedContext.indexOf('|||', (startIndex + 1)) + 3;
 
-        console.log(truncatedContext.substring(endIndex));
+        // console.log(truncatedContext.substring(endIndex));
 
         // Truncate string until withing token_size limit
         while (!token_length) {
@@ -23,11 +23,11 @@ function useTruncateHistory () {
             };
 
             truncatedContext = truncatedContext.substring(endIndex);
-            console.log(truncatedContext);
-
+            
             token_length = isWithinTokenLimit(truncatedContext, token_size);
         };
         
+        console.log(truncatedContext);
         return truncatedContext;
 
     };
