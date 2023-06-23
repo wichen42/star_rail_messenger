@@ -32,8 +32,6 @@ const Input = () => {
   const sendBotMessage = useSendBotMessage();
   const getChatHistory = useGetChatHistory();
 
-// TODO: 1. IMPLEMENT CHAT HISTORY CONTEXT - BOT DOES NOT PARSE HISTORY
-
   const messageData = {
     text: text,
     chatId: data.chatId,
@@ -55,7 +53,6 @@ const Input = () => {
 
       // Get data from chats collection
       const chatHistory = await getChatHistory(data.chatId);
-      console.log(chatHistory);
 
       // Generate chatbot response
       const options = {
