@@ -55,6 +55,7 @@ const Input = () => {
 
       // Get data from chats collection
       const chatHistory = await getChatHistory(data.chatId);
+      console.log(chatHistory);
 
       // Generate chatbot response
       const options = {
