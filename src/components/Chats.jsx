@@ -11,6 +11,7 @@ const Chats = () => {
   const {dispatch} = useContext(ChatContext);
 
   //TODO: 1. REDUCE CHAT MESSAGE LENGTH ON SIDEBAR IF OVER 100 CHARS
+
   useEffect(() => {
     // fetch all of users chats
     const getChats = () => {
@@ -33,6 +34,15 @@ const Chats = () => {
     dispatch({type: "CHANGE_USER", payload: user})
   };
 
+  const truncateMessage = (message) => {
+    let truncatedMessage = message;
+
+    if (truncatedMessage.length > 36) {
+      truncatedMessage = truncatedMessage.slice(0,36) + "...";
+    };
+    return truncatedMessage;
+  };
+
   return (
     <div className='chats'>
       {chats && Object.entries(chats)?.sort((a,b) => b[1].date - a[1].date).map(chat => (
@@ -41,7 +51,7 @@ const Chats = () => {
         <div className='user-chat-info'>
           <div>
             <span>{chat[1].userInfo.displayName}</span>
-            <p>{chat[1].lastMessage?.text}</p>
+            <p>{truncateMessage(chat[1].lastMessage?.text)}</p>
           </div>
           <span className="material-symbols-outlined">arrow_forward_ios</span>
         </div>
