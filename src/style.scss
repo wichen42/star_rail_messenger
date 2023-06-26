@@ -296,9 +296,24 @@ input{
                         display: flex;
                         gap: 10px;
 
-                        img {
-                            height: 30px;
-                            cursor: pointer;
+                        a {
+                            text-decoration: none;
+                            display: flex;
+                            align-items: center;
+                            flex: 1;
+
+                            img {
+                                height: 30px;
+                                cursor: pointer;
+                                max-width: 42px;
+                            }
+
+                            span {
+                                font-size: 14px;
+                                font-weight: bold;
+                                color: #0079DD;
+                                text-align: center;
+                            }
                         }
                     }
                 }
@@ -539,7 +554,7 @@ input{
                 border: none;
                 border-radius: 10px;
                 &::placeholder {
-                      color: $off_white;
+                    color: $off_white;
                 }
             }
 
@@ -579,5 +594,27 @@ input{
 
     }
 }
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip-content {
+    position: absolute;
+    bottom: -30px;
+    transform: translateX(-50%);
+    background-color: white;
+    color: #0079DD;
+    padding: 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: bold;
+    height: 22px;
+    width: fit-content;
+    text-align: center;
+}
+
+
 
 

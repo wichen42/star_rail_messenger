@@ -7,8 +7,8 @@ import { db } from '../firebase';
 import { AuthContext } from '../context/AuthContext';
 import useConvertDate from '../utils/ConvertDate';
 import mail from "../assets/contact_me.png";
-import github from "../assets/github.png";
-import linkedin from "../assets/linkedin.png";
+import github_icon from "../assets/github.png";
+import linkedin_icon from "../assets/linkedin.png";
 
 const Chat = () => {
   const {data} = useContext(ChatContext);
@@ -16,6 +16,9 @@ const Chat = () => {
   const {dispatch} = useContext(ChatContext);
   const [chats, setChats] = useState([]);
   const [hasChats, setHasChats] = useState(false);
+  const [linkedin, setLinkedIn] = useState(false);
+  const [github, setGithub] = useState(false);
+  const [contact,setContact] = useState(false)
   const convertDate = useConvertDate();
 
   useEffect(() => {
@@ -54,27 +57,61 @@ const Chat = () => {
 
       if (mostRecentUser) {
         dispatch({ type: "CHANGE_USER", payload: mostRecentUser });
-        // console.log('User with most recent date:', mostRecentUser);
       }
 
       setHasChats(true);
     }
   }, [hasChats, chats]);
 
+  const handleLinkedInEnter = () => {
+    setLinkedIn(true);
+  };
+
+  const handleLinkedInLeave = () => {
+    setLinkedIn(false);
+  };
+
+  const handleGithubEnter = () => {
+    setGithub(true);
+  };
+
+  const handleGithubLeave = () => {
+    setGithub(false);
+  };
+
+  const handleContactEnter = () => {
+    setContact(true);
+  };
+
+  const handleContactLeave = () => {
+    setContact(false);
+  };
 
   return (
     <div className='chat'>
         <div className="chat-info">
           <span>{data.user?.displayName}</span>
           <div className="chat-icons">
-            <a href="https://www.linkedin.com/in/wchen42/" target='_blank'>
-              <img src={linkedin} alt="linkedin" />
+            <a href="https://www.linkedin.com/in/wchen42/" target='_blank' className='tooltip'
+            onMouseEnter={handleLinkedInEnter}
+            onMouseLeave={handleLinkedInLeave}
+            >
+              <img src={linkedin_icon} alt="linkedin" />
+              {linkedin && <div className="tooltip-content">LinkedIn</div>}
             </a>
-            <a href="https://github.com/wichen42" target='_blank'>
-              <img src={github} alt="github" />
+            <a href="https://github.com/wichen42" target='_blank' className='tooltip'
+            onMouseEnter={handleGithubEnter}
+            onMouseLeave={handleGithubLeave}
+            >
+              <img src={github_icon} alt="github" />
+              {github && <div className="tooltip-content">Github</div>}
             </a>
-            <a href="https://wilsonchen.dev/#contact" target='_blank'>
+            <a href="https://wilsonchen.dev/#contact" target='_blank' className='tooltip'
+            onMouseEnter={handleContactEnter}
+            onMouseLeave={handleContactLeave}
+            >
               <img src={mail} alt="contact_me" />
+              {contact && <div className="tooltip-content">Contact Me</div>}
             </a>
           </div>
         </div>
