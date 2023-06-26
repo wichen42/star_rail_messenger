@@ -301,6 +301,11 @@ input{
                             font-weight: bold;
                             cursor: pointer;
                         }
+
+                        img {
+                            height: 30px;
+                            cursor: pointer;
+                        }
                     }
                 }
     
@@ -473,6 +478,9 @@ input{
         align-items: center;
         justify-content: center;
         text-align: center;
+        max-width: 25%;
+        max-height: 15%;
+        overflow: hidden;
 
         span {
             cursor: pointer;

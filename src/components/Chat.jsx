@@ -6,6 +6,9 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
 import { AuthContext } from '../context/AuthContext';
 import useConvertDate from '../utils/ConvertDate';
+import mail from "../assets/contact_me.png";
+import github from "../assets/github.png";
+import linkedin from "../assets/linkedin.png";
 
 const Chat = () => {
   const {data} = useContext(ChatContext);
@@ -67,9 +70,15 @@ const Chat = () => {
         <div className="chat-info">
           <span>{data.user?.displayName}</span>
           <div className="chat-icons">
-            <span className="material-symbols-outlined">videocam</span>
-            <span className="material-symbols-outlined">person_add</span>
-            <span className="material-symbols-outlined">more_horiz</span>
+            <a href="https://www.linkedin.com/in/wchen42/" target='_blank'>
+              <img src={linkedin} alt="linkedin" />
+            </a>
+            <a href="https://github.com/wichen42" target='_blank'>
+              <img src={github} alt="github" />
+            </a>
+            <a href="https://wilsonchen.dev/#contact" target='_blank'>
+              <img src={mail} alt="contact_me" />
+            </a>
           </div>
         </div>
 

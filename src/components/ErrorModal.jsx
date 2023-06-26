@@ -9,7 +9,6 @@ const ErrorModal = ({ error }) => {
         <div className="error-modal">
             <span class="material-symbols-outlined" onClick={clearError}>cancel</span>
             <div className="error-modal-content">
-                <h2>Error</h2>
                 <p>{error}</p>
             </div>
         </div>
