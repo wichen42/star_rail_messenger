@@ -27,6 +27,7 @@ const Message = ({message}) => {
     
     const getUsername = () => {
       const unsub = onSnapshot(doc(db, "users", message.senderId), (doc) => {
+        console.log(message.senderId);
         setUsername(doc.data().displayName)
       });
 

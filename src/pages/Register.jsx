@@ -68,23 +68,7 @@ const Register = () => {
                         }
 
                         try {
-                            // Create a default userChats object with chat bot
-                            const bot = {
-                                displayName: "The Conductor",
-                                email: "conductor@gmail.com",
-                                photoURL: "https://firebasestorage.googleapis.com/v0/b/star-rail-messenger.appspot.com/o/The%20Conductor?alt=media&token=0e5f86c0-ba86-4848-b6e4-6f46ffad92ec",
-                                uid: "mg7N4iGnF8V0nKAZvkgmiUguzal2",
-                            };
                             await setDoc(doc(db, "userChats", res.user.uid), {
-                                // date : serverTimestamp(),
-                                // lastMessage : {
-                                //     text: "Welcome to Star Rail Messenger! I'm your personal chatbot, how can I help?",
-                                // },
-                                // userInfo: {
-                                //     uid: bot.uid,
-                                //     displayName: bot.displayName,
-                                //     photoURL: bot.photoURL,
-                                // },
                             });
                         } catch(error) {
                             console.log(`Error setting up default user chat: ${error}`);
