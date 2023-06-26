@@ -3,13 +3,14 @@ import { collection, query, where, getDocs, setDoc, doc, updateDoc, serverTimest
 import { db } from '../firebase';
 import { AuthContext } from '../context/AuthContext';
 import { ChatContext } from '../context/ChatContext';
+import { ErrorContext } from '../context/ErrorContext';
 
 const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
-  const [err, setErr] = useState(false);
-  const {currentUser} = useContext(AuthContext);
-  const {dispatch} = useContext(ChatContext);
+  const { currentUser } = useContext(AuthContext);
+  const { dispatch } = useContext(ChatContext);
+  const { handleError } = useContext(ErrorContext);
 
 
   const handleSearch = async () => {
@@ -21,7 +22,7 @@ const Search = () => {
         setUser(doc.data());
       });
     }catch(error){
-      setErr(true);
+      handleError(error);
       console.log(`There was an error searching for user: ${error}`);
     }
 
@@ -62,7 +63,7 @@ const Search = () => {
         });
       }
     } catch (error) {
-      setErr(true);
+      handleError(error);
       console.log(`There was an error fetching chats: ${error}`)
     }
 
@@ -81,7 +82,6 @@ const Search = () => {
         onKeyDown={handleKey}
         />
       </div>
-      {err && <span>User not found!</span>}
       {user && 
         <div className='user-chat searched-user' onClick={()=>handleSelect(user)}>
           <img src={user.photoURL} alt="" />

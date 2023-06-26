@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import { ChatContext } from '../context/ChatContext';
 import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
@@ -18,16 +18,17 @@ import emote_10 from "../assets/emotes/emote_10.png";
 import useSendMessage from '../utils/SendMessage';
 import useSendBotMessage from '../utils/SendBotMessage';
 import useGetChatHistory from '../utils/GetChatHistory';
+import { ErrorContext } from '../context/ErrorContext';
 
 
 const Input = () => {
   const emotes = [emote_1, emote_2, emote_3, emote_4, emote_5, emote_6, emote_7, emote_8, emote_9, emote_10];
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
-  const [err, setErr] = useState(false);
   const dialogRef = useRef(null);
-  const {currentUser} = useContext(AuthContext);
-  const {data} = useContext(ChatContext);
+  const { currentUser } = useContext(AuthContext);
+  const { data } = useContext(ChatContext);
+  const { handleError } = useContext(ErrorContext);
   const sendMessage = useSendMessage();
   const sendBotMessage = useSendBotMessage();
   const getChatHistory = useGetChatHistory();
@@ -80,7 +81,7 @@ const Input = () => {
         };
         
       } catch (error) {
-        setErr(true);
+        handleError(error);
         console.log(`Error with chatbot endpoint: ${error}`);
       };
 
@@ -130,6 +131,7 @@ const Input = () => {
 
         }).then(console.log("emote send sucess...."));
       } catch (error) {
+        handleError(error);
         console.log(`Error with getDownloadURL: ${error}`);
       };
 

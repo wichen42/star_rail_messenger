@@ -3,11 +3,14 @@ import { db } from "../firebase";
 import { v4 as uuid } from 'uuid';
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { ErrorContext } from "../context/ErrorContext";
 
 function useSendBotMessage () {
     const {currentUser} = useContext(AuthContext);
+    const { handleError } = useContext(ErrorContext);
     
     async function sendBotMessage (botMessage) {
+
         // Update chats collection with bot response between chatbot and current user
         try {
             await updateDoc(doc(db, "chats", botMessage.chatId), {
@@ -19,6 +22,7 @@ function useSendBotMessage () {
                 }),
             });
         } catch (error) {
+            handleError(error);
             console.log(`Error with updating chatbot's userChats: ${error}`);
         };
 
@@ -31,6 +35,7 @@ function useSendBotMessage () {
                 [botMessage.chatId + ".date"]: serverTimestamp(),
             });
         } catch (error) {
+            handleError(error);
             console.log(`Error with updating current user's last message for bot response: ${error}`);
         }
 
@@ -43,6 +48,7 @@ function useSendBotMessage () {
                 [botMessage.chatId + ".date"]: serverTimestamp(),
             });
         } catch (error) {
+            handleError(error);
             console.log(`Error with updating chatbot's last message: ${error}`);
         }
     };
