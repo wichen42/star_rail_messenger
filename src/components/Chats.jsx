@@ -37,11 +37,13 @@ const Chats = () => {
   const truncateMessage = (message) => {
     let truncatedMessage = message;
 
-    if (truncatedMessage.length > 36) {
+    if (truncatedMessage && truncatedMessage.length > 36) {
       truncatedMessage = truncatedMessage.slice(0,36) + "...";
     };
     return truncatedMessage;
   };
+
+  console.log(chats);
 
   return (
     <div className='chats'>

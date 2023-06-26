@@ -68,8 +68,7 @@ const Register = () => {
                         }
 
                         try {
-                            await setDoc(doc(db, "userChats", res.user.uid), {
-                            });
+                            await setDoc(doc(db, "userChats", res.user.uid), {});
                         } catch(error) {
                             console.log(`Error setting up default user chat: ${error}`);
                         }

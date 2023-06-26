@@ -41,7 +41,7 @@ const Input = () => {
   const handleSend = async () => {
 
     // Messaging chatbot
-    if (data.user.uid === "oUWQv9XQkfThqPpDhBqKL6SWLWH3") {
+    if (data.user.uid === process.env.REACT_APP_CHATBOT_ID) {
 
       // Send messageData to firebase to update current user and chatbot collections
       await sendMessage(messageData);

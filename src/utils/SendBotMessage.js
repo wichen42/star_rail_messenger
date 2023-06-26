@@ -14,7 +14,7 @@ function useSendBotMessage () {
                 messages: arrayUnion({
                     id: uuid(),
                     text: botMessage.text,
-                    senderId: "mg7N4iGnF8V0nKAZvkgmiUguzal2",
+                    senderId: process.env.REACT_APP_CHATBOT_ID,
                     date: Timestamp.now(),
                 }),
             });
