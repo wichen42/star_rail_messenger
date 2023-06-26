@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState} from 'react'
 import { AuthContext } from '../context/AuthContext';
 import { ChatContext } from '../context/ChatContext';
-import { doc, getDoc, onSnapshot } from 'firebase/firestore';
+import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
 import useConvertDate from '../utils/ConvertDate';
 

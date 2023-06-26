@@ -8,9 +8,6 @@ const Login = () => {
   const [err, setErr] = useState();
   const navigate = useNavigate();
 
-  // TODO: 1. NULL OBJECT ERROR - MIGHT BE DUE TO PAGE LOAD INTERACTION W/ CURRENTUSER AND NAVIGATE("/")
-  //       2. ERROR WITH LOGIN: FIREBASEERROR: FIREBASE: ERROR (AUTH/INVALID-EMAIL)
-
   const handleLogin = async (email, password) => {
     try{
       await signInWithEmailAndPassword(auth, email, password)

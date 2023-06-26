@@ -11,8 +11,6 @@ function useTruncateHistory () {
         let startIndex = truncatedContext.indexOf('|||');
         let endIndex = truncatedContext.indexOf('|||', (startIndex + 1)) + 3;
 
-        // console.log(truncatedContext.substring(endIndex));
-
         // Truncate string until withing token_size limit
         while (!token_length) {
             let startIndex = truncatedContext.indexOf('|||');

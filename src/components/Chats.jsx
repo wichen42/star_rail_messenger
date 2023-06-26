@@ -10,8 +10,6 @@ const Chats = () => {
   const {currentUser} = useContext(AuthContext);
   const {dispatch} = useContext(ChatContext);
 
-  //TODO: 1. REDUCE CHAT MESSAGE LENGTH ON SIDEBAR IF OVER 100 CHARS
-
   useEffect(() => {
     // fetch all of users chats
     const getChats = () => {

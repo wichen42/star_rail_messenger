@@ -1,22 +1,17 @@
-import React, { useContext } from "react";
 import addAvatar from "../assets/addAvatar.png";
 import { auth, storage, db } from "../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { useNavigate, Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-
-// TODO: 1. NEED TO ADDRESS NULL OBJECT ERROR WHEN REGISTERING. USERS CONFIRMED TO BE ADDED INTO DATABASE
-//       2. HOVER STYLING OVER REGISTER BUTTON
+import { ErrorContext } from "../context/ErrorContext";
 
 const Register = () => {
-    const [err, setErr] = useState(false);
     const [image, setImage] = useState(null);
     const [imageURL, setImageURL] = useState(null);
     const navigate = useNavigate();
-    const { currentUser } = useContext(AuthContext);
+    const { handleError } = useContext(ErrorContext);
 
     const handleImage = (e) => {
         const file = e.currentTarget.files[0];
@@ -76,22 +71,19 @@ const Register = () => {
                         navigate("/");
 
                     } catch(error) {
-                        setErr(true)
+                        handleError(error);
                         console.log(`Error with updating upload: ${error}`)
                     }
                 })
             })
 
         } catch(error) {
-            setErr(true);
+            handleError(error);
             console.log(error);
         };
 
         navigate("/");
     };
-
-    // TODO: This might be causing an null object error since there is no current user on register / login until after form is submitted
-    // if (currentUser) navigate("/");
 
     return (
         <div className="app-container glass">
@@ -111,7 +103,6 @@ const Register = () => {
                             <span>Add an Avatar</span>
                         </label>
                         <button>Sign Up</button>
-                        {err && <span>Something went wrong with register...</span>}
                         <p>Already have an account? <Link to="/login">Login</Link></p>
                     </form>
                 </div>

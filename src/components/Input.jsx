@@ -4,7 +4,7 @@ import { ChatContext } from '../context/ChatContext';
 import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { db, storage } from '../firebase';
 import { v4 as uuid } from 'uuid';
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { getDownloadURL, ref } from 'firebase/storage';
 import emote_1 from "../assets/emotes/emote_1.png";
 import emote_2 from "../assets/emotes/emote_2.png";
 import emote_3 from "../assets/emotes/emote_3.png";
