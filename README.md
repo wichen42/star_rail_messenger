@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+# Star Rail Messenger
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Star Rail Messenger is a captivating messenger web application inspired by the in-game messenger of the popular video game, Honkai Star Rail. It aims to provide users with a unique and immersive messaging experience while incorporating the thrilling atmosphere of the game's universe.
 
-## Available Scripts
+<br>
 
-In the project directory, you can run:
+## Project Description
 
-### `npm start`
+Built using React, Redux, Sass, Firebase, and OpenAI, Star Rail Messenger combines cutting-edge technologies and frameworks to deliver a feature-rich and seamless messaging platform. Users can engage in real-time conversations with friends, connect with fellow gamers, and explore the game-themed interface that mirrors the immersive world of Honkai Star Rail.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<br>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Table of Contents
 
-### `npm test`
+- [Star Rail Messenger](#star-rail-messenger)
+  - [Project Description](#project-description)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+  - [Features](#features)
+  - [Contact](#contact)
+  - [Acknowledgments](#acknowledgments)
+  - [Roadmap](#roadmap)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br>
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To get a local copy of the Star Rail Messenger project up and running on your machine, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Fork the repository: Click the "Fork" button at the top right corner of this repository to create your own copy.
+2. Clone the repository: Once you have forked the repository, clone it to your local machine using the following command in your terminal:
 
-### `npm run eject`
+   ```
+   git clone https://github.com/your-username/star-rail-messenger.git
+   ```
+3. Navigate to the project directory: Move into the project directory by running the following command:
+   ```
+   cd star-rail-messenger
+   ```
+4. Install dependencies: Install the project dependencies using a package manager such as npm or yarn. Run the following command to install the required packages:
+   ```
+   npm install
+   ```
+   or 
+   ```
+   yarn install
+   ```
+5. Set up environment variables: Create a .env file in the root directory of the project and configure the necessary environment variables. Refer to the provided .env.example file for the required variables. Please create accounts for your demo user and chatbot.
+   ```
+   REACT_APP_FIREBASE_API = YOUR_FIREBASE_API_KEY
+   REACT_APP_DEMO_EMAIL = YOUR_DEMO_USER_EMAIL
+   REACT_APP_DEMO_PASSWORD = YOUR_DEMO_USER_PASSWORD
+   REACT_APP_CHATBOT_ID = YOUR_CHATBOT_UID
+   REACT_APP_CHAT_GPT_API = YOUR_OPENAI_API_KEY
+   ```
+6. Start frontend and backend development servers: Launch the development server using the following command:
+   ```
+   npm run start:frontend
+   ```
+   ```
+   npm run start:backend
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<br>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Real-time Messaging:** Enjoy instant messaging capabilities that allow you to communicate with friends in real-time, fostering seamless and dynamic conversations.
+- **Game-inspired Design:** Immerse yourself in the captivating world of Honkai Star Rail with a visually stunning user interface, featuring elements reminiscent of the game's universe.
+- **Chatbot Integration:** Interact with an intelligent chatbot powered by OpenAI, enabling users to engage in automated conversations, seek assistance, or explore game-related information.
+- **Media Sharing:** Effortlessly share your favorite memes and images with friends, enhancing communication and adding fun and creativity to your conversations.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<br>
 
-## Learn More
+## Contact
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/wchen42/) to discuss this project, my past projects, or potential future collaborations.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+You can also explore my other projects and contributions on [GitHub](https://github.com/wichen42).
 
-### Code Splitting
+For more information about me and my portfolio, visit my [website](https://wilsonchen.dev/).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+I'm open to connecting with fellow developers, discussing ideas, and exploring opportunities. Don't hesitate to reach out and start a conversation!
 
-### Analyzing the Bundle Size
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Acknowledgments
 
-### Making a Progressive Web App
+I would like to acknowledge and express my gratitude to the creators of Honkai Star Rail for providing the captivating images used in this project. The images utilized in Star Rail Messenger are sourced from the game and are used strictly for non-commercial and educational purposes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Free Use Copyright:** The images from Honkai Star Rail are being used under the assumption of free use copyright, as they are publicly available and intended for non-commercial use.
 
-### Advanced Configuration
+This project is purely for learning and portfolio purposes, and no profit is being made from its development or deployment. The sole intention is to showcase my web development skills and creativity.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+If you are the creator or copyright holder of any of the images used in this project and have any concerns, please do not hesitate to contact me.
 
-### Deployment
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Roadmap
 
-### `npm run build` fails to minify
+Here are the planned future developments for Star Rail Messenger:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Mobile UI/Layout Implementation:** Optimize the user interface and layout for mobile devices, ensuring a seamless and responsive experience for users accessing the web app from their smartphones or tablets.
+
+- **Enhanced Media Sharing:** Expand media sharing capabilities to include sharing videos in addition to images, allowing users to easily share their favorite moments or game-related videos with friends.
+
+- **Group Message Chat Rooms:** Implement group chat functionality, enabling users to create and participate in group message chat rooms. This feature will facilitate communication and collaboration among multiple users in specific topic-based or interest-based conversations.
