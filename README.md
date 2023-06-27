@@ -63,10 +63,10 @@ To get a local copy of the Star Rail Messenger project up and running on your ma
    npm run start:backend
    ```
 
-<br>
+<br>,i
 
-## Features
 
+ ## Features
 - **Real-time Messaging:** Enjoy instant messaging capabilities that allow you to communicate with friends in real-time, fostering seamless and dynamic conversations.
 - **Game-inspired Design:** Immerse yourself in the captivating world of Honkai Star Rail with a visually stunning user interface, featuring elements reminiscent of the game's universe.
 - **Chatbot Integration:** Interact with an intelligent chatbot powered by OpenAI, enabling users to engage in automated conversations, seek assistance, or explore game-related information.
@@ -89,6 +89,8 @@ I'm open to connecting with fellow developers, discussing ideas, and exploring o
 ## Acknowledgments
 
 I would like to acknowledge and express my gratitude to the creators of Honkai Star Rail for providing the captivating images used in this project. The images utilized in Star Rail Messenger are sourced from the game and are used strictly for non-commercial and educational purposes.
+
+I would also like to extend special thanks to [whilekofman](https://github.com/whilekofman) for the brainstorming and debugging sessions. 
 
 **Free Use Copyright:** The images from Honkai Star Rail are being used under the assumption of free use copyright, as they are publicly available and intended for non-commercial use.
 
