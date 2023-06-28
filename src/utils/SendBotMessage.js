@@ -6,7 +6,7 @@ import { AuthContext } from "../context/AuthContext";
 import { ErrorContext } from "../context/ErrorContext";
 
 function useSendBotMessage () {
-    const {currentUser} = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);
     const { handleError } = useContext(ErrorContext);
     
     async function sendBotMessage (botMessage) {
@@ -23,7 +23,7 @@ function useSendBotMessage () {
             });
         } catch (error) {
             handleError(error);
-            console.log(`Error with updating chatbot's userChats: ${error}`);
+            console.error(`Error with updating chatbot's userChats: ${error}`);
         };
 
         // Update last message for current user
@@ -36,7 +36,7 @@ function useSendBotMessage () {
             });
         } catch (error) {
             handleError(error);
-            console.log(`Error with updating current user's last message for bot response: ${error}`);
+            console.error(`Error with updating current user's last message for bot response: ${error}`);
         }
 
         // Update last message for chatbot
@@ -49,7 +49,7 @@ function useSendBotMessage () {
             });
         } catch (error) {
             handleError(error);
-            console.log(`Error with updating chatbot's last message: ${error}`);
+            console.error(`Error with updating chatbot's last message: ${error}`);
         }
     };
 

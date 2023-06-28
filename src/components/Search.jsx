@@ -23,7 +23,7 @@ const Search = () => {
       });
     }catch(error){
       handleError(error);
-      console.log(`There was an error searching for user: ${error}`);
+      console.error(`There was an error searching for user: ${error}`);
     }
 
   };
@@ -34,7 +34,6 @@ const Search = () => {
 
   const handleSelect = async () => {
     const combinedId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;
-    console.log(user);
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
       // check to see if chat already exists between users, if not create
@@ -64,7 +63,7 @@ const Search = () => {
       }
     } catch (error) {
       handleError(error);
-      console.log(`There was an error fetching chats: ${error}`)
+      console.error(`There was an error fetching chats: ${error}`)
     }
 
     dispatch({type:"CHANGE_USER", payload: user});
