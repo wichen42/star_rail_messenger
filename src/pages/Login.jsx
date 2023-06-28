@@ -22,15 +22,16 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
-    handleLogin(email, password);
-  };
-
-  const handleDemoLogin = () => {
-    const demoEmail = process.env.REACT_APP_DEMO_EMAIL;
-    const demoPassword = process.env.REACT_APP_DEMO_PASSWORD;
-    handleLogin(demoEmail, demoPassword);
+    
+    if (e.target.name === 'login') {
+      const email = e.target[0].value;
+      const password = e.target[1].value;
+      handleLogin(email, password);
+    } else if (e.target.name === 'demo-login') {
+      const demoEmail = process.env.REACT_APP_DEMO_EMAIL;
+      const demoPassword = process.env.REACT_APP_DEMO_PASSWORD;
+      handleLogin(demoEmail, demoPassword);
+    };
   };
 
   return (
@@ -44,8 +45,8 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
                 <input type="email" placeholder="Email"/>
                 <input type="password" placeholder="Password" />
-                <button>Login</button>
-                <button onClick={handleDemoLogin}>Login as Demo User</button>
+                <button name='login'>Login</button>
+                <button name='demo-login' onClick={handleSubmit}>Login as Demo User</button>
                 <p>Don't have an account? <Link to="/register">Register</Link></p>
             </form>
         </div>

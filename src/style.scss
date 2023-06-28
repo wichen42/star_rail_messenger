@@ -592,6 +592,21 @@ input{
             }
         }
 
+        .demo-login {
+            width: 250px;
+            background-color: #919eca;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #7c8cc0;
+            }
+            
+        }
+
     }
 }
 
