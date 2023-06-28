@@ -18,6 +18,7 @@ import emote_10 from "../assets/emotes/emote_10.png";
 import useSendMessage from '../utils/SendMessage';
 import useSendBotMessage from '../utils/SendBotMessage';
 import useGetChatHistory from '../utils/GetChatHistory';
+import useGetBotResponse from '../utils/GetBotResponse.js'
 import { ErrorContext } from '../context/ErrorContext';
 
 
@@ -32,6 +33,7 @@ const Input = () => {
   const sendMessage = useSendMessage();
   const sendBotMessage = useSendBotMessage();
   const getChatHistory = useGetChatHistory();
+  const getBotResponse = useGetBotResponse();
 
   const messageData = {
     text: text,
@@ -52,33 +54,20 @@ const Input = () => {
 
       // Get data from chats collection
       const chatHistory = await getChatHistory(data.chatId);
+      
+      try {        
+        // Generate chatbot response
+        const response = await getBotResponse(chatHistory);
+        console.log(response);
 
-      // Generate chatbot response
-      const options = {
-        method: "POST",
-        body: JSON.stringify({
-          message: chatHistory,
-        }),
-        headers: {"Content-Type": "application/json"},
-      };
-
-      try {
-        const response = await fetch('http://localhost:8000/chatbot', options);
-        
-        if (response.ok) {
-          const botData = await response.json();
-          const botMessage = {
-            text: botData.choices[0].message.content,
-            chatId: data.chatId,
-            userId: data.user.uid,
-          };
-
-          // Update firebase collection for message to current user
-          await sendBotMessage(botMessage);
-
-        } else {
-          console.log('Req failed with status: ', response.status);
+        const botMessage = {
+          text: response.choices[0].message.content,
+          chatId: data.chatId,
+          userId: data.user.uid,
         };
+        
+        // Update firebase collection for message to current user
+        await sendBotMessage(botMessage);
         
       } catch (error) {
         handleError(error);
@@ -93,7 +82,7 @@ const Input = () => {
         await sendMessage(messageData);
       };
     };
-
+    
     setText("");
     setImage(null);
   };

@@ -6,7 +6,7 @@ import { AuthContext } from "../context/AuthContext";
 import { ErrorContext } from "../context/ErrorContext";
 
 function useSendBotMessage () {
-    const {currentUser} = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);
     const { handleError } = useContext(ErrorContext);
     
     async function sendBotMessage (botMessage) {
