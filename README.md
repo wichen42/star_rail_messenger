@@ -59,11 +59,8 @@ To get a local copy of the Star Rail Messenger project up and running on your ma
    ```
    npm run start:frontend
    ```
-   ```
-   npm run start:backend
-   ```
 
-<br>,i
+<br>
 
 
  ## Features
