@@ -2,11 +2,13 @@
 
 Star Rail Messenger is a captivating messenger web application inspired by the in-game messenger of the popular video game, Honkai Star Rail. It aims to provide users with a unique and immersive messaging experience while incorporating the thrilling atmosphere of the game's universe.
 
+[Star Rail Messenger](https://star-rail-messenger.onrender.com/)
+
 <br>
 
 ## Project Description
 
-Built using React, Redux, Sass, Firebase, and OpenAI, Star Rail Messenger combines cutting-edge technologies and frameworks to deliver a feature-rich and seamless messaging platform. Users can engage in real-time conversations with friends, connect with fellow gamers, and explore the game-themed interface that mirrors the immersive world of Honkai Star Rail.
+Built using React, Redux, Sass, Firebase, and OpenAI, Star Rail Messenger combines cutting-edge technologies and frameworks to deliver a feature-rich and seamless messaging platform. Users can engage in real-time conversations with friends, our AI chat bot, connect with fellow gamers, and explore the game-themed interface that mirrors the immersive world of Honkai Star Rail.
 
 <br>
 
