@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { auth } from '../firebase';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';
+import { ErrorContext } from '../context/ErrorContext';
 
 const Login = () => {
 
-  const [err, setErr] = useState();
   const navigate = useNavigate();
+  const { handleError } = useContext(ErrorContext);
 
   const handleLogin = async (email, password) => {
     try{
@@ -14,8 +15,8 @@ const Login = () => {
       .then(console.log("Logging in..."));
       navigate("/");
     }catch(error) {
-      setErr(true);
-      console.log(`Error with login: ${error}`);
+      handleError(error);
+      console.error(`Error with login: ${error}`);
     };
   };
 
@@ -45,7 +46,6 @@ const Login = () => {
                 <input type="password" placeholder="Password" />
                 <button>Login</button>
                 <button onClick={handleDemoLogin}>Login as Demo User</button>
-                {err && <span>Something went wrong with login...</span>}
                 <p>Don't have an account? <Link to="/register">Register</Link></p>
             </form>
         </div>

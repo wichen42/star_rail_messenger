@@ -5,7 +5,6 @@ function useGetBotResponse () {
     const { handleError } = useContext(ErrorContext);
 
     async function getBotResponse (chatHistory) {
-        console.log(chatHistory)
         const options = {
             method: "POST",
             headers: {
@@ -27,7 +26,6 @@ function useGetBotResponse () {
             const response = await fetch('https://api.openai.com/v1/chat/completions', options);
         if (response.ok) {
             const data = await response.json();
-            console.log('Data: ', data);
             return data;
         } else {
             console.log('Req failed with status: ', response.status);

@@ -48,7 +48,8 @@ const Register = () => {
                                 photoURL: downloadURL,
                             });
                         } catch(error){
-                            console.log(`Error withupdateProfile: ${error}`)
+                            handleError(error);
+                            console.error(`Error withupdateProfile: ${error}`);
                         }
 
                         try {
@@ -59,27 +60,29 @@ const Register = () => {
                                 photoURL: downloadURL,
                             });
                         } catch(error) {
-                            console.log(`Error with setDoc: ${error}`);
+                            handleError(error);
+                            console.error(`Error with setDoc: ${error}`);
                         }
 
                         try {
                             await setDoc(doc(db, "userChats", res.user.uid), {});
                         } catch(error) {
-                            console.log(`Error setting up default user chat: ${error}`);
+                            handleError(error);
+                            console.error(`Error setting up default user chat: ${error}`);
                         }
 
                         navigate("/");
 
                     } catch(error) {
                         handleError(error);
-                        console.log(`Error with updating upload: ${error}`)
+                        console.error(`Error with updating upload: ${error}`);
                     }
                 })
             })
 
         } catch(error) {
             handleError(error);
-            console.log(error);
+            console.error(error);
         };
 
         navigate("/");

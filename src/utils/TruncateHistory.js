@@ -6,8 +6,6 @@ function useTruncateHistory () {
         let truncatedContext = context;
         let token_length = isWithinTokenLimit(context, token_size);
 
-        console.log(truncatedContext);
-
         let startIndex = truncatedContext.indexOf('|||');
         let endIndex = truncatedContext.indexOf('|||', (startIndex + 1)) + 3;
 
@@ -25,7 +23,6 @@ function useTruncateHistory () {
             token_length = isWithinTokenLimit(truncatedContext, token_size);
         };
         
-        console.log(truncatedContext);
         return truncatedContext;
 
     };

@@ -28,7 +28,6 @@ const Chats = () => {
   }, [currentUser.uid]);
   
   const handleSelect = (user) => {
-    // console.log(user);
     dispatch({type: "CHANGE_USER", payload: user})
   };
 
@@ -40,8 +39,6 @@ const Chats = () => {
     };
     return truncatedMessage;
   };
-
-  console.log(chats);
 
   return (
     <div className='chats'>

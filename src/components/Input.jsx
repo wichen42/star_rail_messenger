@@ -58,7 +58,6 @@ const Input = () => {
       try {        
         // Generate chatbot response
         const response = await getBotResponse(chatHistory);
-        console.log(response);
 
         const botMessage = {
           text: response.choices[0].message.content,
@@ -71,7 +70,7 @@ const Input = () => {
         
       } catch (error) {
         handleError(error);
-        console.log(`Error with chatbot endpoint: ${error}`);
+        console.error(`Error with chatbot endpoint: ${error}`);
       };
 
     } else {
@@ -102,7 +101,6 @@ const Input = () => {
     const match = src.match(/emote_\d+/);
 
     if (match) {
-      console.log(match[0]);
       // genereate ref from Google Cloud Storage URI
       const gsReference = ref(storage, `gs://star-rail-messenger.appspot.com/${match[0]}.png`)
       try {
@@ -121,7 +119,7 @@ const Input = () => {
         }).then(console.log("emote send sucess...."));
       } catch (error) {
         handleError(error);
-        console.log(`Error with getDownloadURL: ${error}`);
+        console.error(`Error with getDownloadURL: ${error}`);
       };
 
       // Update last message for current user
