@@ -45,7 +45,7 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
                 <input type="email" placeholder="Email"/>
                 <input type="password" placeholder="Password" />
-                <button name='login'>Login</button>
+                <button name='login'onClick={handleSubmit}>Login</button>
                 <button name='demo-login' onClick={handleSubmit}>Login as Demo User</button>
                 <p>Don't have an account? <Link to="/register">Register</Link></p>
             </form>
