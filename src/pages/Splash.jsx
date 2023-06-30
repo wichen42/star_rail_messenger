@@ -1,15 +1,30 @@
+import { useRef, useState } from "react";
 import hsr_bg from "../assets/hsr_bg.mp4";
-import SplashModal from "../components/SplashModal";
 
 const Splash = () => {
+    const modal = useRef(null);
 
+    const handleOpen = () => {
+        modal.current.showModal();
+    };
+
+    const handleClose = () => {
+        modal.current.close();
+    }
 
     return (
-    <div className='login-container'>
-        <video src={hsr_bg} autoPlay muted loop></video>
+    <div className='splash-container'>
+        <div className='dialog-overlay' onClick={handleClose}>
+            <dialog ref={modal}>
+                <div className="dialog-header">
+                    <span>Login</span>
+                    <span>Register</span>
+                </div>
+            </dialog>
+        </div>
+        <video src={hsr_bg} ></video>
         <div className="splash-content">
             <div className="splash-overlay">
-                <SplashModal />
                 <div className="splash-header">
                     <h1>Star Rail Messenger</h1>
                     <div>
@@ -20,7 +35,7 @@ const Splash = () => {
                     </div>
                 </div>
                 <div className="splash-button">
-                    <div className="splash-login">Login</div>
+                    <div className="splash-login" onClick={handleOpen}>Login</div>
                 </div>
             </div>
         </div>

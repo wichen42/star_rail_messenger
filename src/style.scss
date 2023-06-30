@@ -108,10 +108,37 @@ input{
     }
 }
 
-.login-container {
+.splash-container {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+
+    .dialog-overlay {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+
+        dialog {
+            height: 600px;
+            width: 500px;
+            border: none;
+            background: transparent;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid white;
+            border-radius: 10px;
+            color: white;
+
+            .dialog-header {
+                display: flex;
+                justify-content: space-evenly;
+
+                span {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 
     video {
         width: 100%;
@@ -181,24 +208,6 @@ input{
                         border-radius: 20px;
                         cursor: pointer;
                     }
-                }
-            }
-
-            .dialog-overlay {
-                position: absolute;
-                height: 100%;
-                width: 100%;
-
-                dialog {
-                    height: 600px;
-                    width: 500px;
-                    top: 20%;
-                    border: none;
-                    background: transparent;
-                    backdrop-filter: blur(10px);
-                    -webkit-backdrop-filter: blur(10px);
-                    border: 2px solid white;
-                    border-radius: 10px;
                 }
             }
         }
