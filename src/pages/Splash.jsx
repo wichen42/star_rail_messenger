@@ -1,17 +1,27 @@
-import { useRef } from "react";
 import hsr_bg from "../assets/hsr_bg.mp4";
+import SplashModal from "../components/SplashModal";
 
 const Splash = () => {
-    const player = useRef(null);
+
 
     return (
     <div className='login-container'>
-        <video ref={player} src={hsr_bg} autoPlay muted loop></video>
-        <div className="login-content">
-            <h1>Welcome</h1>
-            <div>
-                <p>Login</p>
-                <p>Register</p>
+        <video src={hsr_bg} autoPlay muted loop></video>
+        <div className="splash-content">
+            <div className="splash-overlay">
+                <SplashModal />
+                <div className="splash-header">
+                    <h1>Star Rail Messenger</h1>
+                    <div>
+                        <p>About</p>
+                        <p>LinkedIn</p>
+                        <p>GitHub</p>
+                        <p>Contact</p>
+                    </div>
+                </div>
+                <div className="splash-button">
+                    <div className="splash-login">Login</div>
+                </div>
             </div>
         </div>
     </div>
