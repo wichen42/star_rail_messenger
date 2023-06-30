@@ -108,6 +108,31 @@ input{
     }
 }
 
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .login-content {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        color: white;
+    }
+
+}
+
 .app-container {
     height: 100vh;
     width: 100vw;

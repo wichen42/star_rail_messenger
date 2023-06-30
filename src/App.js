@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import Splash from "./pages/Splash";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
       }/>
         <Route path="login" element={<Login/>}/>
         <Route path="register" element={<Register/>}/>
+        <Route path="splash" element={<Splash/>}/>
       </Routes>
     </BrowserRouter>
   );
