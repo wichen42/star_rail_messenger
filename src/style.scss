@@ -142,8 +142,12 @@ input{
                 font-size: 24px;
                 letter-spacing: 1px;
 
-                span {
-                    cursor: pointer;
+                h2::after {
+                    border-bottom: 2px solid white;
+                    content: '';
+                    width: 75%;
+                    display: block;
+                    margin-top: 4px;
                 }
             }
 
@@ -175,18 +179,24 @@ input{
 
                 button {
                     cursor: pointer;
+                    font-weight: bold;
                 }
 
                 div {
                     display: flex;
+                    flex-direction: column;
                     gap: 4px;
-                    margin-top: 20px;
+                    margin-top: 30px;
                     align-items: center;
                     justify-content: center;
 
-                    #form-register {
-                        cursor: pointer;
+                    p {
+                        margin-bottom: 10px;
+                    }
 
+                    #form-register, #demo-login {
+                        cursor: pointer;
+                        margin-top: 10px;
                         &:hover {
                             text-decoration: underline;
                         }

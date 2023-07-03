@@ -14,10 +14,10 @@ const LoginForm = () => {
             <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
             <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
             <button name='login'onClick={handleSubmit}>Login</button>
-            <button name='demo-login' onClick={handleSubmit}>Login as Demo User</button>
             <div>
-                <span>Don't have an account?</span>
-                <span id='form-register'>Register</span>
+                <p>Don't have an account? <span id='form-register'>Register</span></p>
+                <span>or</span>
+                <span id='demo-login'>Login as a Demo User</span>
             </div>
         </form>
     );

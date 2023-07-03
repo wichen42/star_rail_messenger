@@ -20,7 +20,7 @@ const Splash = () => {
         <div className='dialog-overlay' onClick={handleClose}>
             <dialog ref={modal}>
                 <div className="dialog-header">
-                    <span>Login</span>
+                    <h2>Login</h2>
                 </div>
                 <LoginForm />
             </dialog>
