@@ -1,13 +1,13 @@
+import React, { useContext, useState } from 'react'
 import addAvatar from "../assets/addAvatar.png";
-import { auth, storage, db } from "../firebase";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useContext, useState } from "react";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc, setDoc } from "firebase/firestore";
-import { useNavigate, Link } from "react-router-dom";
-import { ErrorContext } from "../context/ErrorContext";
+import { ErrorContext } from '../context/ErrorContext';
+import { useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth, db, storage } from '../firebase';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { doc, setDoc } from 'firebase/firestore';
 
-const Register = () => {
+const RegisterForm = ({toggleForm}) => {
     const [image, setImage] = useState(null);
     const [imageURL, setImageURL] = useState(null);
     const navigate = useNavigate();
@@ -89,29 +89,19 @@ const Register = () => {
     };
 
     return (
-        <div className="app-container glass">
-            <div className="form-container">
-                <div className="form-wrapper">
-                    <div className="form-header">
-                        <span className="logo">Star Rail Messenger</span>
-                        <span className="title">Register</span>
-                    </div>
-                    <form onSubmit={handleSubmit}>
-                        <input type="text" placeholder="Display Name"/>
-                        <input type="email" placeholder="Email"/>
-                        <input type="password" placeholder="Password"/>
-                        <input type="file" id="file" style={{display:"none"}} placeholder="Avatar" onChange={handleImage}/>
-                        <label htmlFor="file">
-                            {preview ? preview : <img src={addAvatar} alt="" />}
-                            <span>Add an Avatar</span>
-                        </label>
-                        <button>Sign Up</button>
-                        <p>Already have an account? <Link to="/login">Login</Link></p>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <form onSubmit={handleSubmit}>
+            <input type="text" placeholder="Display Name"/>
+            <input type="email" placeholder="Email"/>
+            <input type="password" placeholder="Password"/>
+            <input type="file" id="file" style={{display:"none"}} placeholder="Avatar" onChange={handleImage}/>
+            <label htmlFor="file">
+                {preview ? preview : <img src={addAvatar} alt="" />}
+                <span>Add an Avatar</span>
+            </label>
+            <button>Sign Up</button>
+            <p>Already have an account? <span onClick={toggleForm}>Login</span></p>
+        </form>
     );
-};
+}
 
-export default Register;
+export default RegisterForm

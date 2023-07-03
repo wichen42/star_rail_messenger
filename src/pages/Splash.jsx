@@ -1,9 +1,11 @@
 import { useRef, useState } from "react";
 import hsr_bg from "../assets/hsr_bg.mp4";
 import LoginForm from "../components/LoginForm";
+import RegisterForm from "../components/RegisterForm";
 
 const Splash = () => {
     const modal = useRef(null);
+    const [isLoginForm, setIsLoginForm] = useState(true);
 
     const handleOpen = () => {
         modal.current.showModal();
@@ -13,16 +15,21 @@ const Splash = () => {
         if (e.target === modal.current) {
             modal.current.close();
         }
-    }
+    };
+
+    const toggleForm = () => {
+        setIsLoginForm(!isLoginForm);
+    };
 
     return (
     <div className='splash-container'>
         <div className='dialog-overlay' onClick={handleClose}>
             <dialog ref={modal}>
                 <div className="dialog-header">
-                    <h2>Login</h2>
+                    <h2>{isLoginForm ? "Login" : "Register"}</h2>
                 </div>
-                <LoginForm />
+                {isLoginForm ? (<LoginForm toggleForm={toggleForm}/>) 
+                : (<RegisterForm toggleForm={toggleForm}/>)}
             </dialog>
         </div>
         <video src={hsr_bg} ></video>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const LoginForm = () => {
+const LoginForm = ({toggleForm}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
@@ -15,7 +15,7 @@ const LoginForm = () => {
             <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
             <button name='login'onClick={handleSubmit}>Login</button>
             <div>
-                <p>Don't have an account? <span id='form-register'>Register</span></p>
+                <p>Don't have an account? <span id='form-register' onClick={toggleForm}>Register</span></p>
                 <span>or</span>
                 <span id='demo-login'>Login as a Demo User</span>
             </div>
