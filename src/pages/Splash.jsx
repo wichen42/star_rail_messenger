@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import hsr_bg from "../assets/hsr_bg.mp4";
+import LoginForm from "../components/LoginForm";
 
 const Splash = () => {
     const modal = useRef(null);
@@ -8,8 +9,10 @@ const Splash = () => {
         modal.current.showModal();
     };
 
-    const handleClose = () => {
-        modal.current.close();
+    const handleClose = (e) => {
+        if (e.target === modal.current) {
+            modal.current.close();
+        }
     }
 
     return (
@@ -18,8 +21,8 @@ const Splash = () => {
             <dialog ref={modal}>
                 <div className="dialog-header">
                     <span>Login</span>
-                    <span>Register</span>
                 </div>
+                <LoginForm />
             </dialog>
         </div>
         <video src={hsr_bg} ></video>
