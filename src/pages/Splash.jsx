@@ -36,21 +36,23 @@ const Splash = () => {
                 : (<RegisterForm toggleForm={toggleForm}/>)}
             </dialog>
         </div>
-        <video src={hsr_bg} ></video>
+        <video src={hsr_bg} autoPlay muted loop></video>
         <div className="splash-content">
             <div className="splash-overlay">
                 <div className="splash-header">
-                    <h1>Star Rail Messenger</h1>
                     <div>
-                    <a href="https://www.linkedin.com/in/wchen42/" target='_blank' className='tooltip'>
-                        <img src={linkedin_icon} alt="linkedIn" />
-                    </a>
-                    <a href="https://github.com/wichen42" target='_blank' className='tooltip'>
-                        <img src={github_icon} alt="linkedIn" />
-                    </a>
-                    <a href="https://wilsonchen.dev/#contact" target='_blank' className='tooltip'>
-                        <img src={mail} alt="linkedIn" />
-                    </a>
+                        <h1>Star Rail Messenger</h1>
+                        <div>
+                            <a href="https://www.linkedin.com/in/wchen42/" target='_blank' className='tooltip'>
+                                <img src={linkedin_icon} alt="linkedIn" />
+                            </a>
+                            <a href="https://github.com/wichen42" target='_blank' className='tooltip'>
+                                <img src={github_icon} alt="linkedIn" />
+                            </a>
+                            <a href="https://wilsonchen.dev/#contact" target='_blank' className='tooltip'>
+                                <img src={mail} alt="linkedIn" />
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div className="splash-button">
