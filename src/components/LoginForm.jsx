@@ -10,17 +10,25 @@ const LoginForm = ({toggleForm}) => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log(email, password);
-        try {
-            await signInWithEmailAndPassword(auth, email, password)
-            .then(console.log("Logging in..."));
-            navigate("/");
-        } catch (error) {
-            handleError(error);
-            console.error(error);
+    const handleLogin = async (email, password) => {
+        try{
+          await signInWithEmailAndPassword(auth, email, password)
+          .then(console.log("Logging in..."));
+          navigate("/");
+        }catch(error) {
+          handleError(error);
+          console.error(`Error with login: ${error}`);
         };
+      };
+
+    const handleSubmit = (e) => {
+        handleLogin(email, password);
+    };
+
+    const handleDemoLogin = () => {
+        const demoEmail = process.env.REACT_APP_DEMO_EMAIL;
+        const demoPassword = process.env.REACT_APP_DEMO_PASSWORD;
+        handleLogin(demoEmail, demoPassword);
     };
 
     return (
@@ -31,7 +39,7 @@ const LoginForm = ({toggleForm}) => {
             <div>
                 <p>Don't have an account? <span id='form-register' onClick={toggleForm}>Register</span></p>
                 <span>or</span>
-                <span id='demo-login'>Login as a Demo User</span>
+                <span id='demo-login' onClick={handleDemoLogin}>Login as a Demo User</span>
             </div>
         </form>
     );
