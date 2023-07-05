@@ -2,6 +2,10 @@ import { useRef, useState } from "react";
 import hsr_bg from "../assets/hsr_bg.mp4";
 import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
+import mail from "../assets/contact_me_white.png";
+import github_icon from "../assets/github_white.png";
+import linkedin_icon from "../assets/linkedin_white.png";
+
 
 const Splash = () => {
     const modal = useRef(null);
@@ -38,10 +42,15 @@ const Splash = () => {
                 <div className="splash-header">
                     <h1>Star Rail Messenger</h1>
                     <div>
-                        <p>About</p>
-                        <p>LinkedIn</p>
-                        <p>GitHub</p>
-                        <p>Contact</p>
+                    <a href="https://www.linkedin.com/in/wchen42/" target='_blank' className='tooltip'>
+                        <img src={linkedin_icon} alt="linkedIn" />
+                    </a>
+                    <a href="https://github.com/wichen42" target='_blank' className='tooltip'>
+                        <img src={github_icon} alt="linkedIn" />
+                    </a>
+                    <a href="https://wilsonchen.dev/#contact" target='_blank' className='tooltip'>
+                        <img src={mail} alt="linkedIn" />
+                    </a>
                     </div>
                 </div>
                 <div className="splash-button">
