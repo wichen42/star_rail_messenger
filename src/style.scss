@@ -189,8 +189,9 @@ input{
                     margin-top: 30px;
                     align-items: center;
                     justify-content: center;
+                    font-weight: bold;
 
-                    p {
+                    p {                        
                         margin-bottom: 10px;
                     }
 
@@ -218,6 +219,7 @@ input{
 
                 p {
                     margin-top: 15px;
+                    font-weight: bold;
 
                     span:hover {
                         text-decoration: underline;

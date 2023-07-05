@@ -1,12 +1,26 @@
-import React, { useState } from 'react'
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useContext, useState } from 'react'
+import { auth } from '../firebase';
+import { useNavigate } from 'react-router-dom';
+import { ErrorContext } from '../context/ErrorContext';
 
 const LoginForm = ({toggleForm}) => {
+    const { handleError } = useContext(ErrorContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
     
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(email, password);
+        try {
+            await signInWithEmailAndPassword(auth, email, password)
+            .then(console.log("Logging in..."));
+            navigate("/");
+        } catch (error) {
+            handleError(error);
+            console.error(error);
+        };
     };
 
     return (
