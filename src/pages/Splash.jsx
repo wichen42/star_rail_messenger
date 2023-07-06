@@ -1,15 +1,29 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import hsr_bg from "../assets/hsr_bg.mp4";
 import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
 import mail from "../assets/contact_me_white.png";
 import github_icon from "../assets/github_white.png";
 import linkedin_icon from "../assets/linkedin_white.png";
+import LoadingScreen from "../components/LoadingScreen";
 
 
 const Splash = () => {
     const modal = useRef(null);
     const [isLoginForm, setIsLoginForm] = useState(true);
+    const [videoLoaded, setVideoLoaded] = useState(false);
+
+    useEffect(() => {
+        const video = document.getElementById("bg-video");
+
+        return () => {
+        video.addEventListener("loadeddata", handleVideoLoaded);
+        };
+    }, []);
+
+    const handleVideoLoaded = () => {
+        setVideoLoaded(true);
+    };
 
     const handleOpen = () => {
         modal.current.showModal();
@@ -27,6 +41,7 @@ const Splash = () => {
 
     return (
     <div className='splash-container'>
+        {videoLoaded ? null : <LoadingScreen />}
         <div className='dialog-overlay' onClick={handleClose}>
             <dialog ref={modal}>
                 <div className="dialog-header">
@@ -36,7 +51,7 @@ const Splash = () => {
                 : (<RegisterForm toggleForm={toggleForm}/>)}
             </dialog>
         </div>
-        <video src={hsr_bg} autoPlay muted loop></video>
+        <video id="bg-video" src={hsr_bg} autoPlay muted loop></video>
         <div className="splash-content">
             <div className="splash-overlay">
                 <div className="splash-header">
