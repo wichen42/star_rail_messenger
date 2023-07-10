@@ -17,7 +17,8 @@ const Splash = () => {
         const video = document.getElementById("bg-video");
 
         return () => {
-        video.addEventListener("loadeddata", handleVideoLoaded);
+        video.addEventListener("canplaythrough", handleVideoLoaded);
+        console.log("bg loaded");
         };
     }, []);
 
@@ -52,7 +53,7 @@ const Splash = () => {
                 : (<RegisterForm toggleForm={toggleForm}/>)}
             </dialog>
         </div>
-        <video id="bg-video" src={hsr_bg} autoPlay muted loop></video>
+        <video id="bg-video" src={hsr_bg} preload="auto" autoPlay muted loop></video>
         <div className="splash-content">
             <div className="splash-overlay">
                 <div className="splash-header">
