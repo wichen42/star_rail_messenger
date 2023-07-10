@@ -21,10 +21,25 @@ const Splash = () => {
         // video.addEventListener("canplaythrough", handleVideoLoaded);
         video.onloadeddata = function() {
                 setVideoLoaded(true);
-                console.log("Loaded bg vid...");
+                console.log(videoLoaded);
             }
         };
     }, []);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setVideoLoaded(true);
+            console.log("set vid to true for timeout");
+        }, 5000);
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, []);
+
+    useEffect(() => {
+        console.log(videoLoaded)
+    }, [videoLoaded])
 
     const handleVideoLoaded = () => {
         setVideoLoaded(true);
