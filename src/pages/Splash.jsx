@@ -17,6 +17,7 @@ const Splash = () => {
         const video = document.getElementById("bg-video");
 
         return () => {
+        console.log("loading bg");
         video.addEventListener("canplaythrough", handleVideoLoaded);
         console.log("bg loaded");
         };
