@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import hsr_bg from "../assets/hsr_bg.mp4";
+import hsr_bg from "../assets/hsr_bg_5.mp4";
 import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
 import mail from "../assets/contact_me_white.png";
