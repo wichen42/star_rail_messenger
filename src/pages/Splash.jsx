@@ -21,7 +21,6 @@ const Splash = () => {
         // video.addEventListener("canplaythrough", handleVideoLoaded);
         video.onloadeddata = function() {
                 setVideoLoaded(true);
-                console.log(videoLoaded);
             }
         };
     }, []);
@@ -29,22 +28,12 @@ const Splash = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setVideoLoaded(true);
-            console.log("set vid to true for timeout");
-        }, 5000);
+        }, 3500);
 
         return () => {
             clearTimeout(timer);
         };
     }, []);
-
-    useEffect(() => {
-        console.log(videoLoaded)
-    }, [videoLoaded])
-
-    const handleVideoLoaded = () => {
-        setVideoLoaded(true);
-        console.log("Loaded...");
-    };
 
     const handleOpen = () => {
         modal.current.showModal();
