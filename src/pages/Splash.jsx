@@ -23,6 +23,7 @@ const Splash = () => {
 
     const handleVideoLoaded = () => {
         setVideoLoaded(true);
+        console.log("Loaded...");
     };
 
     const handleOpen = () => {
