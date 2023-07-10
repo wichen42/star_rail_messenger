@@ -18,8 +18,11 @@ const Splash = () => {
 
         return () => {
         console.log("loading bg");
-        video.addEventListener("canplaythrough", handleVideoLoaded);
-        console.log("bg loaded");
+        // video.addEventListener("canplaythrough", handleVideoLoaded);
+        video.onloadeddata = function() {
+                setVideoLoaded(true);
+                console.log("Loaded bg vid...");
+            }
         };
     }, []);
 
