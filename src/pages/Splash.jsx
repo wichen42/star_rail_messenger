@@ -70,7 +70,7 @@ const Splash = () => {
                             <a href="https://www.linkedin.com/in/wchen42/" target='_blank' className='tooltip'>
                                 <img src={linkedin_icon} alt="linkedIn" />
                             </a>
-                            <a href="https://github.com/wichen42" target='_blank' className='tooltip'>
+                            <a href="https://github.com/wichen42/star_rail_messenger" target='_blank' className='tooltip'>
                                 <img src={github_icon} alt="linkedIn" />
                             </a>
                             <a href="https://wilsonchen.dev/#contact" target='_blank' className='tooltip'>
