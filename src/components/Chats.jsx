@@ -40,8 +40,6 @@ const Chats = () => {
     return truncatedMessage;
   };
 
-  console.log(chats);
-
   return (
     <div className='chats'>
       {chats && Object.entries(chats)?.sort((a,b) => b[1].date - a[1].date).map(chat => (

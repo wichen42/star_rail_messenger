@@ -12,6 +12,7 @@ const LoginForm = ({toggleForm}) => {
     
     const handleLogin = async (email, password) => {
         try{
+          console.log(email, password);
           await signInWithEmailAndPassword(auth, email, password)
           .then(console.log("Logging in..."));
           navigate("/");
@@ -22,6 +23,7 @@ const LoginForm = ({toggleForm}) => {
       };
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         handleLogin(email, password);
     };
 
