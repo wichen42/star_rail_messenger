@@ -21,6 +21,8 @@ const Chat = () => {
   const [contact,setContact] = useState(false)
   const convertDate = useConvertDate();
 
+  // TODO: Add options to send to chatbot
+
   useEffect(() => {
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
