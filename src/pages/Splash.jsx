@@ -7,8 +7,6 @@ import github_icon from "../assets/github_white.png";
 import linkedin_icon from "../assets/linkedin_white.png";
 import LoadingScreen from "../components/LoadingScreen";
 
-// TODO: Add small description for chat app
-
 const Splash = () => {
     const modal = useRef(null);
     const [isLoginForm, setIsLoginForm] = useState(true);
