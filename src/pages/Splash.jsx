@@ -80,6 +80,10 @@ const Splash = () => {
                         </div>
                     </div>
                 </div>
+                <div className="splash-body">
+                    <p>Connect with friends and engage in real-time conversations that bring your interactions to life.</p>
+                    <p>Interact with out chatbot for intelligent and entertaining conversations whenever you need them.</p>
+                </div>
                 <div className="splash-button">
                     <div className="splash-login" onClick={handleOpen}>Login</div>
                 </div>
