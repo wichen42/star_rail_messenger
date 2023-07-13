@@ -605,8 +605,24 @@ input{
                                 max-width: max-content;
                             }
 
-                            .chatbot-options {
-                                
+                            .chatbot-options-container {
+
+                                span {
+                                    cursor: pointer;
+                                }
+
+                                .chatbot-options {
+                                    background-color: white;
+                                    width: fit-content;
+                                    border-radius: 10px;
+                                    p {
+                                        font-size: 12px;
+                                        color: blue;
+                                        background-color: transparent;
+                                        cursor: pointer;
+                                        text-decoration: underline
+                                    };
+                                }
                             }
                         }
     
