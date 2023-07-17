@@ -34,7 +34,7 @@ const Messages = () => {
   return (
     <div className='messages'>
       {messages.map((message, index) => {
-        return <Message message={message} key={message.id} />
+        return <Message message={message} key={message.id} last={index === messages.length - 1}/>
       })}
       <div ref={messagesEndRef} />
     </div>

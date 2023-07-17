@@ -67,7 +67,7 @@ const ChatBotOptions = () => {
 
     const handleClickOutside = (e) => {
         if (showOptions && optionsRef.current && !optionsRef.current.contains(e.target)) {
-            setShowOptions(!showOptions);
+            setShowOptions(false);
         }
     };
 
