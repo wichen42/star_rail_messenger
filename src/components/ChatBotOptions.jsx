@@ -34,7 +34,6 @@ const ChatBotOptions = () => {
         setShowOptions(!showOptions);
         
         const optionText = e.target.textContent;
-        const chatHistory = await getChatHistory(data.chatId);
 
         const messageData = {
             text: optionText,
@@ -42,11 +41,10 @@ const ChatBotOptions = () => {
             userId: data.user.uid,
         };
 
-        console.log(messageData);
         await sendMessage(messageData);
 
         try {
-            const response = await getBotResponse(chatHistory);
+            const response = await getBotResponse(optionText);
 
             const botMessage = {
                 text: response.choices[0].message.content,
