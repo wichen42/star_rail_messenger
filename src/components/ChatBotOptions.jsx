@@ -31,7 +31,6 @@ const ChatBotOptions = () => {
 
     const handleOption = async (e) => {
         e.preventDefault();
-        setShowOptions(!showOptions);
         
         const optionText = e.target.textContent;
 
@@ -61,12 +60,22 @@ const ChatBotOptions = () => {
             console.error(error);
         };
 
+        setShowOptions(!showOptions);
     };
 
     const handleClickOutside = (e) => {
         if (showOptions && optionsRef.current && !optionsRef.current.contains(e.target)) {
-            setShowOptions(false);
+            setShowOptions(!showOptions);
+            console.log(showOptions)
+            console.log("outside")
         }
+    };
+
+    const handleClose = (e) => {
+        e.preventDefault();
+        if (showOptions) {
+            setShowOptions(false);
+        };
     };
 
     return (
@@ -74,9 +83,10 @@ const ChatBotOptions = () => {
         {!showOptions && <span className="material-symbols-outlined" onClick={handleMore}>more_horiz</span>}
         {showOptions && (
             <div className="chatbot-options" ref={optionsRef}>
+                <span className="material-symbols-outlined" onClick={handleClose}>cancel</span>
                 <p onClick={handleOption}>Who are you?</p>
                 <p onClick={handleOption}>What is the inspiration behind this app?</p>
-                <p onClick={handleOption}>Tell me a joke!</p>
+                <p id="last-p" onClick={handleOption}>Tell me a joke!</p>
             </div>
         )}
     </div>
