@@ -1,8 +1,20 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { ChatContext } from "../context/ChatContext";
+import useSendMessage from "../utils/SendMessage";
+import useSendBotMessage from "../utils/SendBotMessage";
+import { ErrorContext } from "../context/ErrorContext";
+import useGetBotResponse from "../utils/GetBotResponse";
+import useGetChatHistory from "../utils/GetChatHistory";
 
 const ChatBotOptions = () => {
     const optionsRef = useRef(null);
+    const { data } = useContext(ChatContext);
+    const { handleError } = useContext(ErrorContext);
     const [showOptions, setShowOptions] = useState(false);
+    const sendMessage = useSendMessage();
+    const sendBotMessage = useSendBotMessage();
+    const getChatHistory = useGetChatHistory();
+    const getBotResponse = useGetBotResponse();
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
@@ -17,9 +29,38 @@ const ChatBotOptions = () => {
         setShowOptions(!showOptions);
     };
 
-    const handleOption = (e) => {
+    const handleOption = async (e) => {
         e.preventDefault();
         setShowOptions(!showOptions);
+        
+        const optionText = e.target.textContent;
+        const chatHistory = await getChatHistory(data.chatId);
+
+        const messageData = {
+            text: optionText,
+            chatId: data.chatId,
+            userId: data.user.uid,
+        };
+
+        console.log(messageData);
+        await sendMessage(messageData);
+
+        try {
+            const response = await getBotResponse(chatHistory);
+
+            const botMessage = {
+                text: response.choices[0].message.content,
+                chatId: data.chatId,
+                userId: data.user.uid,
+            };
+            
+            await sendBotMessage(botMessage);
+            
+        } catch (error) {
+            handleError(error);
+            console.error(error);
+        };
+
     };
 
     const handleClickOutside = (e) => {
