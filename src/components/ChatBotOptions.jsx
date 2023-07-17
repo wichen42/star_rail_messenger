@@ -13,7 +13,6 @@ const ChatBotOptions = () => {
     const [showOptions, setShowOptions] = useState(false);
     const sendMessage = useSendMessage();
     const sendBotMessage = useSendBotMessage();
-    const getChatHistory = useGetChatHistory();
     const getBotResponse = useGetBotResponse();
 
     useEffect(() => {
@@ -25,7 +24,6 @@ const ChatBotOptions = () => {
     }, []);
 
     const handleMore = (e) => {
-        e.preventDefault();
         setShowOptions(!showOptions);
     };
 
@@ -65,9 +63,10 @@ const ChatBotOptions = () => {
 
     const handleClickOutside = (e) => {
         if (showOptions && optionsRef.current && !optionsRef.current.contains(e.target)) {
-            setShowOptions(!showOptions);
+            setShowOptions(false);
             console.log(showOptions)
-            console.log("outside")
+            console.log(optionsRef.current)
+            console.log(e.target)
         }
     };
 
@@ -80,15 +79,18 @@ const ChatBotOptions = () => {
 
     return (
     <div className="chatbot-options-container">
-        {!showOptions && <span className="material-symbols-outlined" onClick={handleMore}>more_horiz</span>}
-        {showOptions && (
-            <div className="chatbot-options" ref={optionsRef}>
-                <span className="material-symbols-outlined" onClick={handleClose}>cancel</span>
-                <p onClick={handleOption}>Who are you?</p>
-                <p onClick={handleOption}>What is the inspiration behind this app?</p>
-                <p id="last-p" onClick={handleOption}>Tell me a joke!</p>
-            </div>
-        )}
+        {!showOptions ? 
+            (<span className="material-symbols-outlined" onClick={handleMore}>more_horiz</span>) 
+            :
+            (
+                <div className="chatbot-options" ref={optionsRef}>
+                    <span className="material-symbols-outlined" onClick={handleClose}>cancel</span>
+                    <p onClick={handleOption}>Who are you?</p>
+                    <p onClick={handleOption}>What is the inspiration behind this app?</p>
+                    <p id="last-p" onClick={handleOption}>Tell me a joke!</p>
+                </div>
+            )
+        }
     </div>
     )
 }
