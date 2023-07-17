@@ -53,6 +53,8 @@ const ChatBotOptions = () => {
                 chatId: data.chatId,
                 userId: data.user.uid,
             };
+
+            console.log(botMessage.text);
             
             await sendBotMessage(botMessage);
             
