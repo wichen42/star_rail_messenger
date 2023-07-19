@@ -6,7 +6,7 @@ import { db } from '../firebase';
 import useConvertDate from '../utils/ConvertDate';
 import ChatBotOptions from './ChatBotOptions';
 
-const Message = ({message}) => {
+const Message = ({message, last}) => {
   const {currentUser} = useContext(AuthContext);
   const {data} = useContext(ChatContext);
   const [date, setDate] = useState("");
@@ -67,7 +67,7 @@ const Message = ({message}) => {
             <span>{username}</span>
             {message.text && <p>{message.text}</p>}
             {message.img && <img src={message.img} alt="" />}
-            {message.senderId === process.env.REACT_APP_CHATBOT_ID && <ChatBotOptions />}
+            {last && message.senderId === process.env.REACT_APP_CHATBOT_ID && <ChatBotOptions />}
         </div>
     </div>
   )
