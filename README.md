@@ -89,6 +89,8 @@ I'm open to connecting with fellow developers, discussing ideas, and exploring o
 
 I would like to acknowledge and express my gratitude to the creators of Honkai Star Rail for providing the captivating images used in this project. The images utilized in Star Rail Messenger are sourced from the game and are used strictly for non-commercial and educational purposes.
 
+[readme-typing-svg](https://github.com/denvercoder1/readme-typing-svg) - For customized typing effect SVG
+
 I would also like to extend special thanks to [whilekofman](https://github.com/whilekofman) for the brainstorming and debugging sessions. 
 
 **Free Use Copyright:** The images from Honkai Star Rail are being used under the assumption of free use copyright, as they are publicly available and intended for non-commercial use.
