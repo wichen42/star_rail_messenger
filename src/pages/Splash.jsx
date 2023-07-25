@@ -60,7 +60,7 @@ const Splash = () => {
                 : (<RegisterForm toggleForm={toggleForm}/>)}
             </dialog>
         </div>
-        <video id="bg-video" src={hsr_bg} preload="auto" ></video>
+        <video id="bg-video" src={hsr_bg} preload="auto" autoPlay muted loop></video>
         <div className="splash-content">
             <div className="splash-overlay">
                 <div className="splash-header">
