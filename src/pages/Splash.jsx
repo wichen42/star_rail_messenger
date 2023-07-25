@@ -11,6 +11,7 @@ const Splash = () => {
     const modal = useRef(null);
     const [isLoginForm, setIsLoginForm] = useState(true);
     const [videoLoaded, setVideoLoaded] = useState(false);
+    const script = ['Connect with Friends', 'Engage in Stellar Conversations', 'Interact with AI'];
 
     useEffect(() => {
         const video = document.getElementById("bg-video");
@@ -59,7 +60,7 @@ const Splash = () => {
                 : (<RegisterForm toggleForm={toggleForm}/>)}
             </dialog>
         </div>
-        <video id="bg-video" src={hsr_bg} preload="auto" autoPlay muted loop></video>
+        <video id="bg-video" src={hsr_bg} preload="auto" ></video>
         <div className="splash-content">
             <div className="splash-overlay">
                 <div className="splash-header">
@@ -79,8 +80,8 @@ const Splash = () => {
                     </div>
                 </div>
                 <div className="splash-body">
-                    <p>Connect with friends and engage in real-time conversations that bring your interactions to life.</p>
-                    <p>Interact with out chatbot for intelligent and entertaining conversations whenever you need them.</p>
+                    <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Roboto&weight=2400&size=24&duration=3000&pause=6000&color=F7F7F7&width=500&lines=Chat+with+Friends.;Engage+in+Stellar+conversations.;Interact+with+AI." alt="Typing SVG" /></a>
+
                 </div>
                 <div className="splash-button">
                     <div className="splash-login" onClick={handleOpen}>Login</div>
